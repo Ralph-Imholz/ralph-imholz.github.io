@@ -51,16 +51,16 @@ let plafondbaffleCT = 0.63;
 // Events
 $(document).ready( function () {
 
-  $("#height").change(function () {
+  $("#height").keyup(function () {
     fetchRoomSpecs();
     $("#volume").val(dec2(height * surface));
   });
 
-  $("#surface").change(function () {
+  $("#surface").keyup(function () {
     fetchRoomSpecs();
     $("#volume").val(dec2(height * surface));
   });
-  
+
 });
 
 // Fetch Functions
