@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Sonar</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
+
+  <link rel="stylesheet" href="css/styles.min.css">
+
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+
+  <script type="text/javascript" src="jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/calculation.js"></script>
+  <script type="text/javascript" src="js/advieswaarden.js"></script>
+
+</head>
+
+<body>
+
+  <nav class="nav-extended">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Sonar</a>
+      <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="https://rivasono.nl" target="_blank">Rivasono website</a></li>
+        <li><a href="https://rivasono.nl/akoestische-producten" target="_blank">Producten</a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-menu">
+        <li><a href="https://rivasono.nl">Rivasono website</a></li>
+        <li><a href="https://rivasono.nl/akoestische-producten">Producten</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <div id="loading-overlay">
+      <h4>Berekenen...</h4>
+      <div class="progress">
+        <div class="determinate"></div>
+      </div>
+      <p>Afmetingen verwerken <span class="loading-text" id="loadingText1"><i class="material-icons">check</i></span></p>
+      <p>Factoren toepassen <span class="loading-text" id="loadingText2"><i class="material-icons">check</i></span></p>
+      <p>Galm verjagen <span class="loading-text" id="loadingText3"><i class="material-icons">check</i></span></p>
+    </div>
+
+    <div class="main-panel" id="main-left-panel">
+
+      <div class="card">
+        <span class="card-title">Project informatie</span>
+        <div class="input-group">
+          <label for="projectName">Klant/projectnaam</label>
+          <div class="input-wrapper">
+            <input type="text" id="projectName" placeholder="Bijv. 'Rivasono B.V.'">
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="roomName">Ruimtenaam</label>
+          <div class="input-wrapper">
+            <input type="text" id="roomName" placeholder="Bijv. 'Kantoor eerste verdieping'">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card-title">Afmetingen</span>
+        <div class="input-group">
+          <label for="surface">Oppervlakte</label>
+          <div class="input-wrapper">
+            <input type="number" id="surface" class="input-with-aria" placeholder="0.00">
+            <div class="aria">m<sup>2</sup></div>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="height">Hoogte</label>
+          <div class="input-wrapper">
+            <input type="number" id="height" class="input-with-aria" placeholder="0.00">
+            <div class="aria">m</div>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="volume">Inhoud</label>
+          <div class="input-wrapper">
+            <input type="number" id="volume" class="input-with-aria" placeholder="0.00">
+            <div class="aria">m<sup>3</sup></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card-title">Ruimte</span>
+        <div class="input-group">
+          <label for="usage">Gebruik van de ruimte</label>
+          <div class="input-wrapper ">
+            <select id="usage" class="browser-default">
+              <option value="anders">Anders</option>
+              <option value="behandelruimte">Behandelruimte</option>
+              <option value="collegezaal">Collegezaal</option>
+              <option value="dagverblijf">Dagverblijf</option>
+              <option value="foyer">Foyer</option>
+              <option value="gymzaal">Gymzaal</option>
+              <option value="halGang">Hal/gang</option>
+              <option value="homeCinema">Home Cinema</option>
+              <option value="huiskamer">Huiskamer</option>
+              <option value="kantine">Kantine</option>
+              <option value="kantoor">Kantoor</option>
+              <option value="kantoorExtraRustig">Kantoor (extra rustig)</option>
+              <option value="kantoortuin">Kantoortuin</option>
+              <option value="keuken">Keuken</option>
+              <option value="kinderdagverblijf">Kinderdagverblijf</option>
+              <option value="leslokaal">Leslokaal</option>
+              <option value="luisterruimte">Luisterruimte</option>
+              <option value="restaurant">Restaurant</option>
+              <option value="studioAfmix">Studio-afmix</option>
+              <option value="vergaderruimte">Vergaderruimte</option>
+              <option value="zaalMultifunctie">Zaal-multifunctie</option>
+              <option value="winkelruimte">Winkelruimte</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="ambiance">Ambiance</label>
+          <div class="input-wrapper ">
+            <select id="conditions" class="browser-default">
+              <option value="1">Neutraal</option>
+              <option value="1.1">Klassiek</option>
+              <option value="1.15">Industrieel/minimalistsich</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="wishes">Extra wensen akoestiek</label>
+          <div class="input-wrapper ">
+            <select id="wishes" class="browser-default">
+              <option value="1">Geen</option>
+              <option value="0.85">Extra rustig</option>
+              <option value="0.75">Prikkelarm/beschut</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="location">Plaatsing akoestische materialen</label>
+          <div class="input-wrapper ">
+            <select id="location" class="browser-default">
+              <option value="1">Gemiddeld (2m tot 10m)</option>
+              <option value="0.9">Dichtbij (&lt; 2m)</option>
+              <option value="1.2">Op grote afstand (&gt; 10m)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card-title">Personen</span>
+        <div class="input-group">
+          <label for="peopleCount">Aantal</label>
+          <div class="input-wrapper">
+            <input type="number" name="Aantal personen" id="peopleCount" placeholder="0">
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="peopleType">Gedrag</label>
+          <div class="input-wrapper ">
+            <select id="peopleType" class="browser-default">
+              <option value="0.46">Stil aanwezig</option>
+              <option value="0">Sprekend (geluidmakend)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card measurements-card">
+        <div id="measurementsOverlay" class="fade-out">
+          <span>Meetwaarden staan uit, dit betekent dat er een default bla bla bla...</span>
+        </div>
+        <span class="card-title">
+          <span>Meetwaarden</span>
+          <input type="checkbox" class="filled-in" id="measurementsCheck" checked="checked" />
+          <label for="measurementsCheck"></label>
+        </span>
+        <table id="freqTable">
+          <tr>
+            <td>
+              <div class="input-group">
+                <label for="hz125">125Hz</label>
+                <div class="input-wrapper">
+                  <input type="number" id="hz125" placeholder="0.00">
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <label for="hz250">250Hz</label>
+                <div class="input-wrapper">
+                  <input type="number" id="hz250" placeholder="0.00">
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <label for="hz500">500Hz</label>
+                <div class="input-wrapper">
+                  <input type="number" id="hz500" placeholder="0.00">
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="input-group">
+                <label for="hz1000">1000Hz</label>
+                <div class="input-wrapper">
+                  <input type="number" id="hz1000" placeholder="0.00">
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <label for="hz2000">2000Hz</label>
+                <div class="input-wrapper">
+                  <input type="number" id="hz2000" placeholder="0.00">
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <label for="hz4000">4000Hz</label>
+                <div class="input-wrapper">
+                  <input type="number" id="hz4000" placeholder="0.00">
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="main-panel" id="main-right-panel">
+
+      <div class="card result-card">
+        <span class="card-title">Project</span>
+        <div class="input-group">
+          <label>Klant/projectnaam</label>
+          <span id="resultProjectName"></span>
+        </div>
+        <div class="input-group">
+          <label>Ruimtenaam</label>
+          <span id="resultRoomName"></span>
+        </div>
+      </div>
+
+      <div class="card result-card">
+        <span class="card-title">Ruimte</span>
+        <div class="input-group">
+          <label>Ruimtesoort</label>
+          <span id="resultUsage"></span>
+        </div>
+        <div class="input-group">
+          <label>Inhoud</label>
+          <span id="resultVolume"></span>
+        </div>
+      </div>
+
+      <div class="card result-card">
+        <span class="card-title">Factoren</span>
+        <div class="input-group">
+          <label>Ambiance</label>
+          <span id="resultAmbiance"></span>
+        </div>
+        <div class="input-group">
+          <label>Extra wensen akoestiek</label>
+          <span id="resultWishes"></span>
+        </div>
+        <div class="input-group">
+          <label>Plaatsing akoestische materialen</label>
+          <span id="resultLocation"></span>
+        </div>
+        <div class="input-group">
+          <label>Aantal personen</label>
+          <span id="resultPeopleCount"></span>
+        </div>
+      </div>
+
+      <div class="card result-card">
+        <span class="card-title">Quality</span>
+        <div class="input-group">
+          <label>Current average</label>
+          <span id="resultCurrentAvg"></span>
+        </div>
+        <div class="input-group">
+          <label>Quality percentage</label>
+          <span id="resultQualityPerc"></span><span>&nbsp;%</span>
+        </div>
+        <div class="input-group">
+          <label>Advice average</label>
+          <span id="resultAdviceAvg"></span>
+        </div>
+      </div>
+
+      <div class="card result-card">
+        <img src="https://dummyimage.com/800x450/222222/f2f2f2" alt="">
+        <div class="input-group">
+          <span class="product-title">Ceiling Panel</span>
+          <span id="resultCeilingPanel"></span>
+        </div>
+      </div>
+      <div class="card result-card">
+        <img src="https://dummyimage.com/800x450/222222/f2f2f2" alt="">
+        <div class="input-group">
+          <span class="product-title">Wall Panel</span>
+          <span id="resultWallPanel"></span>
+        </div>
+      </div>
+      <div class="card result-card">
+        <img src="https://dummyimage.com/800x450/222222/f2f2f2" alt="">
+        <div class="input-group">
+          <span class="product-title">Design Panel</span>
+          <span id="resultDesignPanel"></span>
+        </div>
+      </div>
+      <div class="card result-card">
+        <img src="https://dummyimage.com/800x450/222222/f2f2f2" alt="">
+        <div class="input-group">
+          <span class="product-title">Flat Panel SAB</span>
+          <span id="resultFlatPanelSAB"></span>
+        </div>
+      </div>
+      <div class="card result-card">
+        <img src="https://dummyimage.com/800x450/222222/f2f2f2" alt="">
+        <div class="input-group">
+          <span class="product-title">Fabric Panel</span>
+          <span id="resultFabricPanel"></span>
+        </div>
+      </div>
+      <div class="card result-card">
+        <img src="https://dummyimage.com/800x450/222222/f2f2f2" alt="">
+        <div class="input-group">
+          <span class="product-title">Paneel VQ</span>
+          <span id="resultPaneelVQ"></span>
+        </div>
+      </div>
+      <div class="card result-card">
+        <img src="https://dummyimage.com/800x450/222222/f2f2f2" alt="">
+        <div class="input-group">
+          <span class="product-title">Systeemplafondplaat</span>
+          <span id="resultSysteemplafondplaat"></span>
+        </div>
+      </div>
+      <div class="card result-card">
+        <img src="https://dummyimage.com/800x450/222222/f2f2f2" alt="">
+        <div class="input-group">
+          <span class="product-title">Plafondbaffle CT</span>
+          <span id="resultPlafondbaffleCT"></span>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+  </main>
+
+  <footer class="page-footer scnd-color">
+    <div class="footer-btns">
+      <a class="waves-effect waves-light btn disabled" id="transitionBtnL" onClick="transitionToL()"><i class="material-icons left">chevron_left</i>Invoer</a>
+      <a class="waves-effect waves-light btn" id="transitionBtnR" onClick="transitionToR()"><i class="material-icons right">chevron_right</i>Resultaat</a>
+    </div>
+  </footer>
+
+</body>
+
+</html>
