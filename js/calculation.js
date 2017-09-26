@@ -60,6 +60,7 @@ $(document).ready( function () {
     fetchRoomSpecs();
     $("#volume").val(dec2(height * surface));
   });
+  
 });
 
 // Fetch Functions
