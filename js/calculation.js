@@ -183,14 +183,41 @@ function pushValues() {
   document.getElementById("resultQualityPerc").textContent = qualityPerc;
   document.getElementById("resultAdviceAvg").textContent = adviceValueFactored;
 
-  document.getElementById("resultCeilingPanel").textContent = dec0((currentAbsorbtion - adviceValueFactored) / ceilingPanel);
-  document.getElementById("resultWallPanel").textContent = dec0((currentAbsorbtion - adviceValueFactored) / wallPanel);
-  document.getElementById("resultDesignPanel").textContent = dec0((currentAbsorbtion - adviceValueFactored) / designPanel);
-  document.getElementById("resultFlatPanelSAB").textContent = dec0((currentAbsorbtion - adviceValueFactored) / flatPanelSAB);
-  document.getElementById("resultFabricPanel").textContent = dec0((currentAbsorbtion - adviceValueFactored) / fabricPanel);
-  document.getElementById("resultPaneelVQ").textContent = dec0((currentAbsorbtion - adviceValueFactored) / paneelVQ);
-  document.getElementById("resultSysteemplafondplaat").textContent = dec0((currentAbsorbtion - adviceValueFactored) / systeemplafondplaat);
-  document.getElementById("resultPlafondbaffleCT").textContent = dec0((currentAbsorbtion - adviceValueFactored) / plafondbaffleCT);
+  //optimaal  1.0
+  //goed      0.8
+  //hoorbaar  0.6
+
+  document.getElementById("resultCeilingPanel1").textContent = dec0((currentAbsorbtion - adviceValueFactored) / ceilingPanel * 0.6);
+  document.getElementById("resultCeilingPanel2").textContent = dec0((currentAbsorbtion - adviceValueFactored) / ceilingPanel * 0.8);
+  document.getElementById("resultCeilingPanel3").textContent = dec0((currentAbsorbtion - adviceValueFactored) / ceilingPanel);
+
+  document.getElementById("resultWallPanel1").textContent = dec0((currentAbsorbtion - adviceValueFactored) / wallPanel * 0.6);
+  document.getElementById("resultWallPanel2").textContent = dec0((currentAbsorbtion - adviceValueFactored) / wallPanel * 0.8);
+  document.getElementById("resultWallPanel3").textContent = dec0((currentAbsorbtion - adviceValueFactored) / wallPanel);
+
+  document.getElementById("resultDesignPanel1").textContent = dec0((currentAbsorbtion - adviceValueFactored) / designPanel * 0.6);
+  document.getElementById("resultDesignPanel2").textContent = dec0((currentAbsorbtion - adviceValueFactored) / designPanel * 0.8);
+  document.getElementById("resultDesignPanel3").textContent = dec0((currentAbsorbtion - adviceValueFactored) / designPanel);
+
+  document.getElementById("resultFlatPanelSAB1").textContent = dec0((currentAbsorbtion - adviceValueFactored) / flatPanelSAB * 0.6);
+  document.getElementById("resultFlatPanelSAB2").textContent = dec0((currentAbsorbtion - adviceValueFactored) / flatPanelSAB * 0.8);
+  document.getElementById("resultFlatPanelSAB3").textContent = dec0((currentAbsorbtion - adviceValueFactored) / flatPanelSAB);
+
+  document.getElementById("resultFabricPanel1").textContent = dec0((currentAbsorbtion - adviceValueFactored) / fabricPanel * 0.6);
+  document.getElementById("resultFabricPanel2").textContent = dec0((currentAbsorbtion - adviceValueFactored) / fabricPanel * 0.8);
+  document.getElementById("resultFabricPanel3").textContent = dec0((currentAbsorbtion - adviceValueFactored) / fabricPanel);
+
+  document.getElementById("resultPaneelVQ1").textContent = dec0((currentAbsorbtion - adviceValueFactored) / paneelVQ * 0.6);
+  document.getElementById("resultPaneelVQ2").textContent = dec0((currentAbsorbtion - adviceValueFactored) / paneelVQ * 0.8);
+  document.getElementById("resultPaneelVQ3").textContent = dec0((currentAbsorbtion - adviceValueFactored) / paneelVQ);
+
+  document.getElementById("resultSysteemplafondplaat1").textContent = dec0((currentAbsorbtion - adviceValueFactored) / systeemplafondplaat * 0.6);
+  document.getElementById("resultSysteemplafondplaat2").textContent = dec0((currentAbsorbtion - adviceValueFactored) / systeemplafondplaat * 0.8);
+  document.getElementById("resultSysteemplafondplaat3").textContent = dec0((currentAbsorbtion - adviceValueFactored) / systeemplafondplaat);
+
+  document.getElementById("resultPlafondbaffleCT1").textContent = dec0((currentAbsorbtion - adviceValueFactored) / plafondbaffleCT * 0.6);
+  document.getElementById("resultPlafondbaffleCT2").textContent = dec0((currentAbsorbtion - adviceValueFactored) / plafondbaffleCT * 0.8);
+  document.getElementById("resultPlafondbaffleCT3").textContent = dec0((currentAbsorbtion - adviceValueFactored) / plafondbaffleCT);
 }
 
 function calculate() {
