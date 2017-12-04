@@ -1,466 +1,336 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="nl" class="has-navbar-fixed-top">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sonar 0.3.1</title>
 
-  <title>Sonar</title>
-
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
-
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="vendor/bulma/css/bulma.css" media="screen,projection" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
   <link rel="stylesheet" href="css/styles.css">
 
   <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-
-  <script type="text/javascript" src="jquery/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
-  <script type="text/javascript" src="js/main.js"></script>
-  <script type="text/javascript" src="js/calculation.js"></script>
-  <script type="text/javascript" src="js/advieswaarden.js"></script>
-
 </head>
-
 <body>
+  
+  <nav class="navbar is-fixed-top">
+    <div class="navbar-brand">
+      <a href="" class="navbar-item logo">Sonar 0.3.1 </a>
+      <button class="button navbar-burger" data-target="navMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+      <div class="navbar-start">
+        
+      </div>
 
-  <nav class="nav-extended">
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Sonar</a>
-      <a href="#" data-activates="mobile-menu" class="button-collapse">
-        <i class="material-icons">menu</i>
-      </a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li>
-          <a href="https://rivasono.nl" target="_blank">Rivasono website</a>
-        </li>
-        <li>
-          <a href="https://rivasono.nl/akoestische-producten" target="_blank">Producten</a>
-        </li>
-      </ul>
-      <ul class="side-nav" id="mobile-menu">
-        <li>
-          <a href="https://rivasono.nl">Rivasono website</a>
-        </li>
-        <li>
-          <a href="https://rivasono.nl/akoestische-producten">Producten</a>
-        </li>
-      </ul>
+      <div class="navbar-end">
+        <a href="https://rivasono.nl" target="_blank" class="navbar-item">Rivasono website</a>
+        <a href="https://rivasono.nl/akoestische-producten" target="_blank" class="navbar-item">Rivasono producten</a>
+      </div>
     </div>
   </nav>
 
+  <div class="sonar-app-nav">
+    <div class="sonar-app-nav-buttons">
+      <button class="sonar-nav-button active" id="invoerButton">Invoer</button>
+      <button class="sonar-nav-button resultaatButton" id="resultaatNavButton">Resultaat</button>
+    </div>
+  </div>
+
   <main>
 
-    <div id="loading-overlay">
-      <h4>Berekenen...</h4>
-      <div class="progress">
-        <div class="determinate"></div>
+    <div class="sonar-panel sonar-input-panel">
+        <div class="sonar-panel-content">
+      <div class="sonar-input-wrapper">
+        <div class="sonar-input-title">
+          <h3>Project</h3>
+        </div>
+        <hr class="full-width">
+        <div class="sonar-inputs-column">
+          <div class="sonar-input">
+            <label for="projectNaam">Klant/projectnaam</label>
+            <input type="text" name="projectNaam" id="projectNaam" placeholder="Bijv. 'Rivasono B.V.'" required>
+          </div>
+        </div>
       </div>
-      <p>Afmetingen verwerken
-        <span class="loading-text" id="loadingText1">
-          <i class="material-icons">check</i>
-        </span>
-      </p>
-      <p>Factoren toepassen
-        <span class="loading-text" id="loadingText2">
-          <i class="material-icons">check</i>
-        </span>
-      </p>
-      <p>Galm verjagen
-        <span class="loading-text" id="loadingText3">
-          <i class="material-icons">check</i>
-        </span>
-      </p>
+
+      <div class="sonar-input-wrapper sonar-ruimte-inputs">
+        <div class="sonar-input-title">
+          <h3>Ruimte</h3>
+        </div>
+        <hr class="full-width">
+        <div class="sonar-inputs">
+          <div class="sonar-inputs-column">
+            <div class="sonar-input">
+              <label for="ruimteNaam">Ruimtenaam</label>
+              <input type="text" name="ruimteNaam" id="ruimteNaam" placeholder="Bijv. 'Rivasono B.V.'">
+            </div>
+            <div class="sonar-input">
+              <label for="gebruik">Gebruik van de ruimte</label>
+              <select name="gebruik" id="gebruik">
+                <!-- Wordt gegenereerd door javascript -->
+              </select>
+            </div>
+            <div class="sonar-input">
+              <label for="personenAantal">Aantal personen</label>
+              <input type="number" name="personenAantal" id="personenAantal" placeholder="0">
+            </div>
+            <div class="sonar-input">
+              <label for="personenGedrag">Gedrag personen</label>
+              <select name="personenGedrag" id="personenGedrag">
+                <option value="0.422921667">Stil aanwezig</option>
+                <option value="0">Sprekend (geluidmakend)</option>
+              </select>
+            </div>
+            <div class="sonar-input">
+              <label for="wensen">Extra wensen akoestiek</label>
+              <select name="wensen" id="wensen">
+                <option value="1">Geen</option>
+                <option value="0.85">Extra rustig</option>
+                <option value="0.75">Prikkelarm/beschut</option>
+              </select>
+            </div>
+          </div>
+          <div class="sonar-inputs-column">
+            <div class="sonar-input">
+              <label for="oppervlakte">Oppervlakte (m<sup>2</sup>)</label>
+              <div class="input-wrapper">
+                <input type="number" name="oppervlakte" id="oppervlakte" placeholder="0,00" step="0.01">
+              </div>
+            </div>
+            <div class="sonar-input">
+              <label for="hoogte">Hoogte (m)</label>
+              <div class="input-wrapper">
+                <input type="number" name="hoogte" id="hoogte" placeholder="0,00" step="0.01">
+              </div>
+            </div>
+            <div class="sonar-input">
+              <label for="inhoud">Inhoud (m<sup>3</sup>)</label>
+              <div class="input-wrapper">
+                <input type="number" name="inhoud" id="inhoud" placeholder="0,00" step="0.01">
+              </div>
+            </div>
+            <div class="sonar-input">
+              <label for="ambiance">Ambiance</label>
+              <select name="ambiance" id="ambiance">
+                <option value="1">Neutraal</option>
+                <option value="1.1">Klassiek</option>
+                <option value="1.15">Industrieel/minimalistisch</option>
+              </select>
+            </div>
+            <div class="sonar-input">
+              <label for="plaatsing">Plaatsing akoestische materialen</label>
+              <select name="plaatsing" id="plaatsing">
+                <option value="1">Gemiddeld (2m tot 10m)</option>
+                <option value="0.9">Dichtbij (&lt; 2m)</option>
+                <option value="1.2">Op grote afstand (&gt; 10m)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sonar-input-wrapper sonar-meetwaarden-inputs">
+        <div class="sonar-input-title">
+          <h3><!--<label class="checkbox sonar-checkbox"><input id="meetwaardenCheck" type="checkbox" checked>Meetwaarden</label>-->Meetwaarden</h3>
+        </div>
+        <hr>
+        <div class="sonar-meetwaarden">
+          <div class="sonar-meetwaarden-overlay">
+            <p>Berekening op basis van schatting huidige akoestiek.</p>
+            <!--
+            <p>Kies daarvoor de huidige inrichting:</p>
+            <p>&nbsp;</p>
+            <select name="inrichting" id="inrichting">
+              <option value="1">Leeg</option>
+              <option value="3">Weinig</option>
+              <option value="5">Gemiddeld</option>
+              <option value="5">Goed</option>
+            </select>
+            -->
+          </div>
+          <div class="sonar-inputs sonar-meetwaarden-input-columns">
+            <div class="sonar-inputs-column">
+              <div class="sonar-input">
+                <label for="hz125">125 Hz (sec)</label>
+                <input type="number" name="hz125" id="hz125" placeholder="0,00" step="0.01">
+              </div>
+            </div>
+            <div class="sonar-inputs-column">
+              <div class="sonar-input">
+                <label for="hz250">250 Hz (sec)</label>
+                <input type="number" name="hz250" id="hz250" placeholder="0,00" step="0.01">
+              </div>
+            </div>
+            <div class="sonar-inputs-column">
+              <div class="sonar-input">
+                <label for="hz500">500 Hz (sec)</label>
+                <input type="number" name="hz500" id="hz500" placeholder="0,00" step="0.01">
+              </div>
+            </div>
+          </div>
+          <div class="sonar-inputs sonar-meetwaarden-input-columns">
+            <div class="sonar-inputs-column">
+              <div class="sonar-input">
+                <label for="hz1000">1000 Hz (sec)</label>
+                <input type="number" name="hz1000" id="hz1000" placeholder="0,00" step="0.01">
+              </div>
+            </div>
+            <div class="sonar-inputs-column">
+              <div class="sonar-input">
+                <label for="hz2000">2000 Hz (sec)</label>
+                <input type="number" name="hz2000" id="hz2000" placeholder="0,00" step="0.01">
+              </div>
+            </div>
+            <div class="sonar-inputs-column">
+              <div class="sonar-input">
+                <label for="hz4000">4000 Hz (sec)</label>
+                <input type="number" name="hz4000" id="hz4000" placeholder="0,00" step="0.01">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<button class="resultaatButton sonar-nav-button">Bereken&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></button>-->
+      </div>
+    </div>
     </div>
 
-    <div class="main-panel" id="main-left-panel">
+    <div class="sonar-panel sonar-results-panel">
 
-      <div class="card">
-        <span class="card-title">Project informatie</span>
-        <div class="input-group">
-          <label for="projectName">Klant/projectnaam</label>
-          <div class="input-wrapper">
-            <input type="text" id="projectName" placeholder="Bijv. 'Rivasono B.V.'">
-          </div>
+        <div class="sonar-panel-content">
+      <div class="sonar-input-wrapper">
+        <div class="sonar-input-title">
+          <h3>Project <!--<a id="sonar-dump-button" href="#sonar-dump-modal" rel="modal:open">Dump</a>--></h3>
         </div>
-        <div class="input-group">
-          <label for="roomName">Ruimtenaam</label>
-          <div class="input-wrapper">
-            <input type="text" id="roomName" placeholder="Bijv. 'Kantoor eerste verdieping'">
+        <hr class="full-width">
+        <div class="sonar-inputs-column">
+          <div class="sonar-input">
+            <label for="rProjectNaam">Klant/projectnaam</label>
+            <input type="text" name="rProjectNaam" id="rProjectNaam" readonly >
           </div>
         </div>
       </div>
 
-      <div class="card">
-        <span class="card-title">Afmetingen</span>
-        <div class="input-group">
-          <label for="surface">Oppervlakte</label>
-          <div class="input-wrapper">
-            <input type="number" id="surface" class="input-with-aria" placeholder="0.00">
-            <div class="aria">m
-              <sup>2</sup>
+      <div class="sonar-input-wrapper">
+        <div class="sonar-input-title">
+          <h3>Ruimte</h3>
+        </div>
+        <hr class="full-width">
+        <div class="sonar-inputs">
+          <div class="sonar-inputs-column">
+            <div class="sonar-input">
+              <label for="rRuimteNaam">Ruimtenaam</label>
+              <input type="text" name="rRuimteNaam" id="rRuimteNaam" readonly >
+            </div>
+            <div class="sonar-input">
+              <label for="rGebruik">Gebruik van de ruimte</label>
+              <input type="text" name="rGebruik" id="rGebruik" readonly >
+            </div>
+            <div class="sonar-input">
+              <label for="rPersonenAantal">Aantal personen</label>
+              <input type="text" name="rPersonenAantal" id="rPersonenAantal" readonly >
+            </div>
+            <div class="sonar-input">
+              <label for="rPersonenGedrag">Gedrag personen</label>
+              <input type="text" name="rPersonenGedrag" id="rPersonenGedrag" readonly >
+            </div>
+            <div class="sonar-input">
+              <label for="rWensen">Extra wensen akoestiek</label>
+              <input type="text" name="rWensen" id="rWensen" readonly >
+            </div>
+          </div>
+          <div class="sonar-inputs-column">
+            <div class="sonar-input">
+              <label for="rOppervlakte">Oppervlakte</label>
+              <span class="suffix"><span class="result" name="rOppervlakte" id="rOppervlakte" ></span>&nbsp;m<sup>2</sup></span>
+            </div>
+            <div class="sonar-input">
+              <label for="rHoogte">Hoogte</label>
+              <span class="suffix"><span class="result" name="rHoogte" id="rHoogte" ></span>&nbsp;m</span>
+            </div>
+            <div class="sonar-input">
+              <label for="rInhoud">Inhoud</label>
+              <span class="suffix"><span class="result" name="rInhoud" id="rInhoud" ></span>&nbsp;m<sup>3</sup></span>
+            </div>
+            <div class="sonar-input">
+              <label for="rAmbiance">Ambiance</label>
+              <input type="text" name="rAmbiance" id="rAmbiance" readonly >
+            </div>
+            <div class="sonar-input">
+              <label for="rPlaatsing">Plaatsing akoestische materialen</label>
+              <input type="text" name="rPlaatsing" id="rPlaatsing" readonly >
             </div>
           </div>
         </div>
-        <div class="input-group">
-          <label for="height">Hoogte</label>
-          <div class="input-wrapper">
-            <input type="number" id="height" class="input-with-aria" placeholder="0.00">
-            <div class="aria">m</div>
-          </div>
+      </div>
+
+      <div class="sonar-input-wrapper">
+        <div class="sonar-input-title">
+          <h3>Akoestiek huidig/advies</h3>
         </div>
-        <div class="input-group">
-          <label for="volume">Inhoud</label>
-          <div class="input-wrapper">
-            <input type="number" id="volume" class="input-with-aria" placeholder="0.00">
-            <div class="aria">m
-              <sup>3</sup>
+        <div class="sonar-inputs">
+          <div class="sonar-inputs-column">
+            <div class="sonar-input">
+              <label for="rHuidigeGalmtijd">Huidige gem. galmtijd</label>
+              <input name="rHuidigeGalmtijd" id="rHuidigeGalmtijd" type="text" readonly >
+            </div>
+          </div>
+          <div class="sonar-inputs-column">
+            <div class="sonar-input">
+              <label for="rKwaliteitPercentage">Kwaliteit huidige akoestiek</label>
+              <input name="rKwaliteitPercentage" id="rKwaliteitPercentage" type="text" readonly >
+            </div>
+          </div>
+          <div class="sonar-inputs-column">
+            <div class="sonar-input">
+              <label for="rAdvieswaarde">Akoestische advieswaarde</label>
+              <input name="rAdvieswaarde" id="rAdvieswaarde" type="text" readonly >
             </div>
           </div>
         </div>
       </div>
 
-      <div class="card">
-        <span class="card-title">Ruimte</span>
-        <div class="input-group">
-          <label for="usage">Gebruik van de ruimte</label>
-          <div class="input-wrapper ">
-            <select id="usage" class="browser-default">
-              <option value="anders">Anders</option>
-              <option value="behandelruimte">Behandelruimte</option>
-              <option value="collegezaal">Collegezaal</option>
-              <option value="dagverblijf">Dagverblijf</option>
-              <option value="foyer">Foyer</option>
-              <option value="gymzaal">Gymzaal</option>
-              <option value="halGang">Hal/gang</option>
-              <option value="homeCinema">Home Cinema</option>
-              <option value="huiskamer">Huiskamer</option>
-              <option value="kantine">Kantine</option>
-              <option value="kantoor">Kantoor</option>
-              <option value="kantoorExtraRustig">Kantoor (extra rustig)</option>
-              <option value="kantoortuin">Kantoortuin</option>
-              <option value="keuken">Keuken</option>
-              <option value="kinderdagverblijf">Kinderdagverblijf</option>
-              <option value="leslokaal">Leslokaal</option>
-              <option value="luisterruimte">Luisterruimte</option>
-              <option value="restaurant">Restaurant</option>
-              <option value="studioAfmix">Studio-afmix</option>
-              <option value="vergaderruimte">Vergaderruimte</option>
-              <option value="zaalMultifunctie">Zaal-multifunctie</option>
-              <option value="winkelruimte">Winkelruimte</option>
-            </select>
-          </div>
+      <div class="sonar-input-wrapper">
+        <div class="sonar-input-title">
+          <h3>Producten</h3>
         </div>
-        <div class="input-group">
-          <label for="ambiance">Ambiance</label>
-          <div class="input-wrapper ">
-            <select id="conditions" class="browser-default">
-              <option value="1">Neutraal</option>
-              <option value="1.1">Klassiek</option>
-              <option value="1.15">Industrieel/minimalistsich</option>
-            </select>
-          </div>
-        </div>
-        <div class="input-group">
-          <label for="wishes">Extra wensen akoestiek</label>
-          <div class="input-wrapper ">
-            <select id="wishes" class="browser-default">
-              <option value="1">Geen</option>
-              <option value="0.85">Extra rustig</option>
-              <option value="0.75">Prikkelarm/beschut</option>
-            </select>
-          </div>
-        </div>
-        <div class="input-group">
-          <label for="location">Plaatsing akoestische materialen</label>
-          <div class="input-wrapper ">
-            <select id="location" class="browser-default">
-              <option value="1">Gemiddeld (2m tot 10m)</option>
-              <option value="0.9">Dichtbij (&lt; 2m)</option>
-              <option value="1.2">Op grote afstand (&gt; 10m)</option>
-            </select>
+        <hr>
+        <div class="sonar-inputs sonar-producten">
+          <div class="sonar-inputs-column sonar-product-cards">
+            
           </div>
         </div>
       </div>
 
-      <div class="card">
-        <span class="card-title">Personen</span>
-        <div class="input-group">
-          <label for="peopleCount">Aantal</label>
-          <div class="input-wrapper">
-            <input type="number" name="Aantal personen" id="peopleCount" placeholder="0">
-          </div>
-        </div>
-        <div class="input-group">
-          <label for="peopleType">Gedrag</label>
-          <div class="input-wrapper ">
-            <select id="peopleType" class="browser-default">
-              <option value="0.46">Stil aanwezig</option>
-              <option value="0">Sprekend (geluidmakend)</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div class="card measurements-card">
-        <div id="measurementsOverlay" class="fade-out">
-          <span>Berekening op basis van gemiddelden i.p.v. exacte meetwaarden.</span>
-        </div>
-        <span class="card-title">
-          <span>Meetwaarden</span>
-          <input type="checkbox" class="filled-in" id="measurementsCheck" checked="checked" />
-          <!-- TODO -->
-          <label for="measurementsCheck" ></label>
-        </span>
-        <table id="freqTable">
-          <tr>
-            <td>
-              <div class="input-group">
-                <label for="hz125">125Hz</label>
-                <div class="input-wrapper">
-                  <input type="number" id="hz125" placeholder="0.00">
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="input-group">
-                <label for="hz250">250Hz</label>
-                <div class="input-wrapper">
-                  <input type="number" id="hz250" placeholder="0.00">
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="input-group">
-                <label for="hz500">500Hz</label>
-                <div class="input-wrapper">
-                  <input type="number" id="hz500" placeholder="0.00">
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="input-group">
-                <label for="hz1000">1000Hz</label>
-                <div class="input-wrapper">
-                  <input type="number" id="hz1000" placeholder="0.00">
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="input-group">
-                <label for="hz2000">2000Hz</label>
-                <div class="input-wrapper">
-                  <input type="number" id="hz2000" placeholder="0.00">
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="input-group">
-                <label for="hz4000">4000Hz</label>
-                <div class="input-wrapper">
-                  <input type="number" id="hz4000" placeholder="0.00">
-                </div>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-
-    </div>
-
-    <div class="main-panel" id="main-right-panel">
-
-      <div class="right-panel-results">
-        <div class="card result-card">
-          <span class="card-title">Project</span>
-          <div class="input-group">
-            <label>Klant/projectnaam</label>
-            <span id="resultProjectName"></span>
-          </div>
-          <div class="input-group">
-            <label>Ruimtenaam</label>
-            <span id="resultRoomName"></span>
-          </div>
-          <div class="input-group">
-            <label>Ruimtesoort</label>
-            <span id="resultUsage"></span>
-          </div>
-          <div class="input-group">
-            <label>Inhoud</label>
-            <span id="resultVolume"></span>
-          </div>
-        </div>
-
-        <div class="card result-card">
-          <span class="card-title">Factoren</span>
-          <div class="input-group">
-            <label>Ambiance</label>
-            <span id="resultAmbiance"></span>
-          </div>
-          <div class="input-group">
-            <label>Extra wensen akoestiek</label>
-            <span id="resultWishes"></span>
-          </div>
-          <div class="input-group">
-            <label>Plaatsing akoestische materialen</label>
-            <span id="resultLocation"></span>
-          </div>
-          <div class="input-group">
-            <label>Aantal personen</label>
-            <span id="resultPeopleCount"></span>
-          </div>
-        </div>
-
-        <div class="card result-card">
-          <span class="card-title">Akoestiek huidig/advies</span>
-          <div class="input-group">
-            <label>Huidige gem. galmtijd</label>
-            <span id="resultCurrentAvg"></span>
-          </div>
-          <div class="input-group">
-            <label style="display: block">Kwaliteit huidige akoestiek</label>
-            <span  style="display: inline-block" id="resultQualityPerc"></span>
-            <span  style="display: inline-block; padding-left: 0" >%</span>
-          </div>
-          <div class="input-group">
-            <label>Akoestische advieswaarde</label>
-            <span id="resultAdviceAvg"></span>
-          </div>
-        </div>
-      </div>
-      <div class="right-panel-products">
-        <div class="card result-card">
-          <img src="img/ceiling-panel-kader.jpg" alt="">
-          <div class="input-group" style="display: flex; flex-direction: column;">
-            <span class="product-title">Ceiling Panel Kader</span>
-            <div class="product-result-box">
-              <span>Hoorbaar</span>
-              <span>Goed</span>
-              <span>Optimaal</span>
-              <span class="product-result" id="resultCeilingPanel1"></span>
-              <span class="product-result" id="resultCeilingPanel2"></span>
-              <span class="product-result" id="resultCeilingPanel3"></span>
-            </div>
-          </div>
-        </div>
-        <div class="card result-card">
-          <img src="img/ceiling-panel-randloos.jpg" alt="">
-          <div class="input-group" style="display: flex; flex-direction: column;">
-            <span class="product-title">Ceiling Panel Randloos</span>
-            <div class="product-result-box">
-              <span>Hoorbaar</span>
-              <span>Goed</span>
-              <span>Optimaal</span>
-              <span class="product-result" id="resultWallPanel1"></span>
-              <span class="product-result" id="resultWallPanel2"></span>
-              <span class="product-result" id="resultWallPanel3"></span>
-            </div>
-          </div>
-        </div>
-        <div class="card result-card">
-          <img src="img/design-panel.jpg" alt="">
-          <div class="input-group" style="display: flex; flex-direction: column;">
-            <span class="product-title">Design Panel 3.5</span>
-            <div class="product-result-box">
-              <span>Hoorbaar</span>
-              <span>Goed</span>
-              <span>Optimaal</span>
-              <span class="product-result" id="resultDesignPanel1"></span>
-              <span class="product-result" id="resultDesignPanel2"></span>
-              <span class="product-result" id="resultDesignPanel3"></span>
-            </div>
-          </div>
-        </div>
-        <div class="card result-card">
-          <img src="img/panel-sab.jpg" alt="">
-          <div class="input-group" style="display: flex; flex-direction: column;">
-            <span class="product-title">Panel SAB</span>
-            <div class="product-result-box">
-              <span>Hoorbaar</span>
-              <span>Goed</span>
-              <span>Optimaal</span>
-              <span class="product-result" id="resultFlatPanelSAB1"></span>
-              <span class="product-result" id="resultFlatPanelSAB2"></span>
-              <span class="product-result" id="resultFlatPanelSAB3"></span>
-            </div>
-          </div>
-        </div>
-        <div class="card result-card">
-          <img src="img/color-panel.jpg" alt="">
-          <div class="input-group" style="display: flex; flex-direction: column;">
-            <span class="product-title">Color Panel</span>
-            <div class="product-result-box">
-              <span>Hoorbaar</span>
-              <span>Goed</span>
-              <span>Optimaal</span>
-              <span class="product-result" id="resultFabricPanel1"></span>
-              <span class="product-result" id="resultFabricPanel2"></span>
-              <span class="product-result" id="resultFabricPanel3"></span>
-            </div>
-          </div>
-        </div>
-        <div class="card result-card">
-          <img src="img/panel-vq.jpg" alt="">
-          <div class="input-group" style="display: flex; flex-direction: column;">
-            <span class="product-title">Paneel VQ</span>
-            <div class="product-result-box">
-              <span>Hoorbaar</span>
-              <span>Goed</span>
-              <span>Optimaal</span>
-              <span class="product-result" id="resultPaneelVQ1"></span>
-              <span class="product-result" id="resultPaneelVQ2"></span>
-              <span class="product-result" id="resultPaneelVQ3"></span>
-            </div>
-          </div>
-        </div>
-        <div class="card result-card">
-          <img src="img/panel-ca.jpg" alt="">
-          <div class="input-group" style="display: flex; flex-direction: column;">
-            <span class="product-title">Panel CA</span>
-            <div class="product-result-box">
-              <span>Hoorbaar</span>
-              <span>Goed</span>
-              <span>Optimaal</span>
-              <span class="product-result" id="resultSysteemplafondplaat1"></span>
-              <span class="product-result" id="resultSysteemplafondplaat2"></span>
-              <span class="product-result" id="resultSysteemplafondplaat3"></span>
-            </div>
-          </div>
-        </div>
-        <div class="card result-card">
-          <img src="img/plafondbaffle-ct.jpg" alt="">
-          <div class="input-group" style="display: flex; flex-direction: column;">
-            <span class="product-title">Plafondbaffle CT</span>
-            <div class="product-result-box">
-              <span>Hoorbaar</span>
-              <span>Goed</span>
-              <span>Optimaal</span>
-              <span class="product-result" id="resultPlafondbaffleCT1"></span>
-              <span class="product-result" id="resultPlafondbaffleCT2"></span>
-              <span class="product-result" id="resultPlafondbaffleCT3"></span>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     </div>
 
   </main>
 
-  <footer class="page-footer scnd-color">
-    <div class="footer-btns">
-      <a class="waves-effect waves-light btn disabled" id="transitionBtnL" onClick="transitionToL()">
-        <i class="material-icons left">chevron_left</i>Invoer</a>
-      <a class="waves-effect waves-light btn" id="transitionBtnR" onClick="transitionToR()">
-        <i class="material-icons right">chevron_right</i>Resultaat</a>
+  <div id="sonar-dump-modal" class="modal">
+    <h3>Sonar Dump</h3>
+    <br>
+    <div id="sonar-dump-values">
+
     </div>
-  </footer>
+    <br>
+    <a href="#" rel="modal:close">Close</a>
+  </div>
+
+  <script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+  <script
+  src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/main.js"></script>
 
 </body>
-
 </html>

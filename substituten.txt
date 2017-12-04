@@ -1,0 +1,27 @@
+sabins per m3 inhoud
+huidige absorbtie, ongemeten
+
+anders						0.13
+behandelruimte				0.22
+collegezaal					0.22
+dagverblijf					0.22
+foyer						0.15
+gymzaal						0.09
+hal/gang					0.09
+home-cinema					weiger
+huiskamer					0.23
+kantine						0.15
+kantoor						0.12
+kantoor (extra rustig)		0.12
+kantoortuin					0.12
+keuken						0.22
+kinderdagverblijf			0.12
+leslokaal					0.22
+luisterruimte				weiger
+restaurant					0.15
+studio/afmix				weiger
+vergaderruimte				0.12
+zaal/multifunctie			0.09
+winkelruimte				0.15
+
+* gebruiker ingegeven inhoud = huidige hoeveelheid sabins
