@@ -259,9 +259,9 @@ $(document).ready(function () {
   $(".resultaatButton").click( function () {
     if (app.flipped == false) {
 
-      /*if(invalidCheck()) {
+      if(invalidCheck()) {
         return;
-      }*/
+      }
 
       $(".sonar-input-panel").toggle("drop");
       $(".sonar-results-panel").toggle("drop", {direction: "right"});
