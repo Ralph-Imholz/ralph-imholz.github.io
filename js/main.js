@@ -22,13 +22,119 @@ var advieswaarden = [
     groot: 0.64,
   },
   {
+    naam: "Dagverblijf",
+    klein: 0.50,
+    middel: 0.55,
+    groot: 0.64,
+  },
+  {
+    naam: "Foyer",
+    klein: 0.63,
+    middel: 0.70,
+    groot: 0.80,
+  },
+  {
+    naam: "Gymzaal",
+    klein: 0.70,
+    middel: 0.77,
+    groot: 0.89,
+  },
+  {
     naam: "Hal/gang",
     klein: 0.70,
     middel: 0.77,
     groot: 0.89,
-  }
-
-// TODO -> Rest van de advieswaarden toevoegen
+  },
+  {
+    naam: "Home cinema",
+    klein: 0.31,
+    middel: 0.34,
+    groot: 0.39,
+  },
+  {
+    naam: "Huiskamer",
+    klein: 0.48,
+    middel: 0.53,
+    groot: 0.61,
+  },
+  {
+    naam: "Kantine",
+    klein: 0.45,
+    middel: 0.54,
+    groot: 0.62,
+  },
+  {
+    naam: "Kantoor",
+    klein: 0.45,
+    middel: 0.54,
+    groot: 0.62,
+  },
+  {
+    naam: "Kantoor (extra rustig)",
+    klein: 0.44,
+    middel: 0.48,
+    groot: 0.55,
+  },
+  {
+    naam: "Kantoortuin",
+    klein: 0.47,
+    middel: 0.52,
+    groot: 0.60,
+  },
+  {
+    naam: "Keuken",
+    klein: 0.70,
+    middel: 0.77,
+    groot: 0.89,
+  },
+  {
+    naam: "Kinderdagverblijf",
+    klein: 0.60,
+    middel: 0.66,
+    groot: 0.76,
+  },
+  {
+    naam: "Leslokaal",
+    klein: 0.40,
+    middel: 0.45,
+    groot: 0.51,
+  },
+  {
+    naam: "Luisterruimte",
+    klein: 0.36,
+    middel: 0.40,
+    groot: 0.46,
+  },
+  {
+    naam: "Restaurant",
+    klein: 0.60,
+    middel: 0.66,
+    groot: 0.76,
+  },
+  {
+    naam: "Studio/afmix",
+    klein: 0.31,
+    middel: 0.34,
+    groot: 0.39,
+  },
+  {
+    naam: "Vergaderruimte",
+    klein: 0.44,
+    middel: 0.48,
+    groot: 0.55,
+  },
+  {
+    naam: "Zaal/multifunctie",
+    klein: 0.64,
+    middel: 0.71,
+    groot: 0.80,
+  },
+  {
+    naam: "Winkelruimte",
+    klein: 0.60,
+    middel: 0.66,
+    groot: 0.76,
+  },
 
 ];
 
