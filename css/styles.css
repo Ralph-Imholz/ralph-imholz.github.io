@@ -252,8 +252,9 @@ main {
   border-bottom: none;
 }
 
-.sonar-results-panel .sonar-input .result {
+.result {
   color: #00749d;
+  padding: 0.25rem;
   font-size: 1.1rem;
 }
 
@@ -383,6 +384,7 @@ main {
   -webkit-box-direction: normal;
       -ms-flex-flow: row nowrap;
           flex-flow: row nowrap;
+  font-size: 0.9rem;
 }
 .sonar-product-card .sonar-product-content .sonar-product-values .sonar-product-value {
   padding: 0.5rem;

@@ -307,14 +307,14 @@ function sonarCalculate() {
   $("#rPersonenAantal").val(sVars.personenAantal);
   $("#rPersonenGedrag").val($("#personenGedrag option:selected").text());
   $("#rWensen").val($("#wensen option:selected").text());
-  $("#rOppervlakte").text(sVars.oppervlakte);
-  $("#rHoogte").text(sVars.hoogte);
-  $("#rInhoud").text(sVars.inhoud);
+  $("#rOppervlakte").text(roundTo(sVars.oppervlakte, 2));
+  $("#rHoogte").text(roundTo(sVars.hoogte, 2));
+  $("#rInhoud").text(roundTo(sVars.inhoud, 2));
   $("#rAmbiance").val($("#ambiance option:selected").text());
   $("#rPlaatsing").val($("#plaatsing option:selected").text());
-  $("#rHuidigeGalmtijd").val(sVars.metingAvg);
-  $("#rKwaliteitPercentage").val(sVars.kwaliteitsPercentage);
-  $("#rAdvieswaarde").val(sVars.advieswaarde);
+  $("#rHuidigeGalmtijd").text(roundTo(sVars.metingAvg, 2));
+  $("#rKwaliteitPercentage").text(sVars.kwaliteitsPercentage);
+  $("#rAdvieswaarde").text(roundTo(sVars.advieswaarde, 2));
 
   $(".sonar-product-card").remove();
 
@@ -330,15 +330,15 @@ function sonarCalculate() {
           "</div>" +
           "<div class=\"sonar-product-values\">" +
             "<div class=\"sonar-product-value\">" +
-              "<p><span>" + roundTo(value.m2hoorbaar, 1) + "</span>&nbsp;m<sup>2</sup></p>" +
+              "<p><span class=\"result\">" + roundTo(value.m2hoorbaar, 1) + "</span>&nbsp;m<sup>2</sup></p>" +
               "<p>Hoorbaar<br>50% resultaat</p>" +
             "</div>" +
             "<div class=\"sonar-product-value\">" +
-              "<p><span>" + roundTo(value.m2goed, 1) + "</span>&nbsp;m<sup>2</sup></p>" +
+              "<p><span class=\"result\">" + roundTo(value.m2goed, 1) + "</span>&nbsp;m<sup>2</sup></p>" +
               "<p>Goed<br>75% resultaat</p>" +
             "</div>" +
             "<div class=\"sonar-product-value\">" +
-              "<p><span>" + roundTo(value.m2optimaal, 1) + "</span>&nbsp;m<sup>2</sup></p>" +
+              "<p><span class=\"result\">" + roundTo(value.m2optimaal, 1) + "</span>&nbsp;m<sup>2</sup></p>" +
               "<p>Optimaal<br>100% resultaat</p>" +
             "</div>" +
           "</div>"+
@@ -406,7 +406,7 @@ $(document).ready(function () {
 
   $("#oppervlakte, #hoogte").on("keyup", function () {
     $("#inhoud").val(roundTo(sVars["oppervlakte"] * sVars["hoogte"], 2));
-    sVars["inhoud"] = roundTo(sVars["oppervlakte"] * sVars["hoogte"], 2);
+    sVars["inhoud"] = sVars["oppervlakte"] * sVars["hoogte"];
   });
 
   $("#meetwaardenCheck").change(function () {
@@ -443,7 +443,7 @@ $(document).ready(function () {
 });
 
 function roundTo(value, sig) {
-  return Number(value.toFixed(sig));
+  return value.toFixed(sig);
 }
 
 function invalidCheck() {
