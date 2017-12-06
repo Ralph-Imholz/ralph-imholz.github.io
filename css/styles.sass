@@ -64,8 +64,15 @@ body
 input, 
 button, 
 a
+  color: $primary
+  transition: 0.2s
   &:focus
     outline: none !important
+
+a
+  color: $primary
+  &:hover
+    color: lighten($primary, 10)
 
 body, 
 button, 
@@ -151,6 +158,7 @@ table
     justify-content: center
     min-width: 300px
     button
+      transition: 0.2s
       border: 0
       width: 50%
       padding: 0.5rem 1rem
@@ -192,7 +200,7 @@ main
     .sonar-input-title
       padding: 1rem
   .sonar-input
-    padding: 1rem
+    padding: 0.5rem 1rem
     display: flex
     flex-direction: column
     label
@@ -236,6 +244,15 @@ main
 
 .sonar-meetwaarden
   position: relative
+  display: flex
+  flex-direction: column
+  
+#invoerPanelButton
+  align-self: flex-end
+  border-radius: 4px
+  margin-right: 1rem
+  margin-bottom: 1rem
+  box-shadow: $box-shad1
 
 .sonar-meetwaarden-overlay
   position: absolute
@@ -301,9 +318,12 @@ main
   &:hover
     cursor: pointer
 
-#invoerButton
+.disclaimer
+  margin-top: 1rem
+  padding: 1rem
+  font-size: 0.7rem
+  color: rgba(0,0,0,0.6)
 
-#resultaatNavButton
 
 button.sonar-nav-button
   border-top-left-radius: 4px

@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html lang="nl" class="has-navbar-fixed-top">
 <head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110779645-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110779645-1');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Sonar 0.3.2</title>
+  <title>Rivasono Sonar 0.3.3</title>
 
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -19,7 +30,7 @@
   
   <nav class="navbar is-fixed-top">
     <div class="navbar-brand">
-      <a href="" class="navbar-item logo">Sonar 0.3.2 </a>
+      <a href="" class="navbar-item logo">Rivasono Sonar 0.3.3 </a>
       <button class="button navbar-burger" data-target="navMenu">
         <span></span>
         <span></span>
@@ -196,8 +207,8 @@
               </div>
             </div>
           </div>
+          <button id="invoerPanelButton" class="resultaatButton sonar-nav-button">Bereken&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></button>
         </div>
-        <!--<button class="resultaatButton sonar-nav-button">Bereken&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></button>-->
       </div>
     </div>
     </div>
@@ -306,6 +317,9 @@
           <div class="sonar-inputs-column sonar-product-cards">
             
           </div>
+        </div>
+        <div class="disclaimer">
+          De calculaties zijn gebaseerd op akoestische modellen en schattingen voor algemene situaties. Eventuele metingen zijn ad-hoc uitgevoerd, zonder dat alle bouwkundige eigenschappen bekend zijn. De meetresultaten en calculaties zijn bedoeld ter indicatie; er kunnen geen rechten aan worden ontleend.
         </div>
       </div>
 

@@ -1,2 +1,2 @@
-# ralph-imholz.github.io
-Rivasono Sonar
+# Rivasono Sonar
+Made by Ralph Imholz

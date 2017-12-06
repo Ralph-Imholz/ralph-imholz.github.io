@@ -1,3 +1,5 @@
+var devMode = true;
+
 /* ----------------------------------------
 |  Variabelen
 |----------------------------------------*/
@@ -146,6 +148,7 @@ var producten = [
     m2hoorbaar: 0,
     m2goed: 0,
     m2optimaal: 0,
+    productUrl: "https://www.rivasono.nl/akoestische-producten/aan-het-plafond/plafondpanelen",
   },
   {
     naam: "Ceiling Panel randloos",
@@ -154,6 +157,7 @@ var producten = [
     m2hoorbaar: 0,
     m2goed: 0,
     m2optimaal: 0,
+    productUrl: "https://www.rivasono.nl/akoestische-producten/aan-het-plafond/plafondpanelen/ceiling-panel-randloos-wit-akoestisch-plafondpaneel",
   },
   {
     naam: "Color Panel",
@@ -162,6 +166,7 @@ var producten = [
     m2hoorbaar: 0,
     m2goed: 0,
     m2optimaal: 0,
+    productUrl: "https://www.rivasono.nl/akoestische-producten/aan-de-wand/wandpanelen",
   },
   {
     naam: "Design Panel 3.5",
@@ -170,6 +175,7 @@ var producten = [
     m2hoorbaar: 0,
     m2goed: 0,
     m2optimaal: 0,
+    productUrl: "https://www.rivasono.nl/akoestische-producten/aan-de-wand/wandpanelen/rivasono-akoestisch-design-paneel",
   },
   {
     naam: "Panel SAB",
@@ -178,6 +184,7 @@ var producten = [
     m2hoorbaar: 0,
     m2goed: 0,
     m2optimaal: 0,
+    productUrl: "https://www.rivasono.nl/akoestische-producten/aan-de-wand/wandpanelen/rivasono-flat-panel-sab-akoestisch-wandpaneel-en-plafondpaneel",
   },
   {
     naam: "Panel VQ",
@@ -186,6 +193,7 @@ var producten = [
     m2hoorbaar: 0,
     m2goed: 0,
     m2optimaal: 0,
+    productUrl: "https://www.rivasono.nl/akoestische-producten/aan-de-wand/wandpanelen/rivasono-panel-vq-akoestisch-wand-en-plafondpaneel",
   },
   {
     naam: "Plafondbaffle CT",
@@ -194,6 +202,7 @@ var producten = [
     m2hoorbaar: 0,
     m2goed: 0,
     m2optimaal: 0,
+    productUrl: "https://www.rivasono.nl/akoestische-producten/plafondbattle-ct-akoestische-plafondbaffle",
   },
   {
     naam: "Panel CA",
@@ -202,6 +211,7 @@ var producten = [
     m2hoorbaar: 0,
     m2goed: 0,
     m2optimaal: 0,
+    productUrl: "https://www.rivasono.nl/akoestische-producten/aan-het-plafond/plafondpanelen",
   },
   {
     naam: "Wall Panel System",
@@ -210,6 +220,7 @@ var producten = [
     m2hoorbaar: 0,
     m2goed: 0,
     m2optimaal: 0,
+    productUrl: "https://www.rivasono.nl/akoestische-producten/aan-de-wand/wandsystemen/rivasono-akoestisch-wandpaneel-systeem",
   },
 ];
 
@@ -296,8 +307,8 @@ function sonarCalculate() {
   console.log("Personen factor \t= \t" + sVars.personenFactor);
 
   $.each(producten, function (key, value) {
-    value.m2hoorbaar = (sVars.constante * sVars.inhoud / sVars.advieswaarde - (sVars.huidigeAbsorbtie + sVars.personenFactor)) / value.factor * sVars.plaatsing * 0.5;
-    value.m2goed = (sVars.constante * sVars.inhoud / sVars.advieswaarde - (sVars.huidigeAbsorbtie + sVars.personenFactor)) / value.factor * sVars.plaatsing * 0.75;
+    value.m2hoorbaar = (sVars.constante * sVars.inhoud / sVars.advieswaarde - (sVars.huidigeAbsorbtie + sVars.personenFactor)) / value.factor * sVars.plaatsing * 0.6;
+    value.m2goed = (sVars.constante * sVars.inhoud / sVars.advieswaarde - (sVars.huidigeAbsorbtie + sVars.personenFactor)) / value.factor * sVars.plaatsing * 0.8;
     value.m2optimaal = (sVars.constante * sVars.inhoud / sVars.advieswaarde - (sVars.huidigeAbsorbtie + sVars.personenFactor)) / value.factor * sVars.plaatsing;
   });
 
@@ -314,6 +325,14 @@ function sonarCalculate() {
   $("#rPlaatsing").val($("#plaatsing option:selected").text());
   $("#rHuidigeGalmtijd").text(roundTo(sVars.metingAvg, 2));
   $("#rKwaliteitPercentage").text(sVars.kwaliteitsPercentage);
+  if (sVars.kwaliteitsPercentage < 80) {
+    $("#rKwaliteitPercentage").css("color", "#cc0000");
+  } else if (sVars.kwaliteitsPercentage >= 80 && sVars.kwaliteitsPercentage < 100) {
+    $("#rKwaliteitPercentage").css("color", "#cc9900");
+  } else {
+    $("#rKwaliteitPercentage").css("color", "#29a329");
+  }
+
   $("#rAdvieswaarde").text(roundTo(sVars.advieswaarde, 2));
 
   $(".sonar-product-card").remove();
@@ -326,16 +345,16 @@ function sonarCalculate() {
         "</div>" +
         "<div class=\"sonar-product-content\">" +
           "<div class=\"sonar-product-title\">" +
-            "<h3>" + value.naam + "</h3>" +
+            "<a href=\"" + value.productUrl + "\"><h3>" + value.naam + "</h3></a>" +
           "</div>" +
           "<div class=\"sonar-product-values\">" +
             "<div class=\"sonar-product-value\">" +
               "<p><span class=\"result\">" + roundTo(value.m2hoorbaar, 1) + "</span>&nbsp;m<sup>2</sup></p>" +
-              "<p>Hoorbaar<br>50% resultaat</p>" +
+              "<p>Hoorbaar<br>60% resultaat</p>" +
             "</div>" +
             "<div class=\"sonar-product-value\">" +
               "<p><span class=\"result\">" + roundTo(value.m2goed, 1) + "</span>&nbsp;m<sup>2</sup></p>" +
-              "<p>Goed<br>75% resultaat</p>" +
+              "<p>Goed<br>80% resultaat</p>" +
             "</div>" +
             "<div class=\"sonar-product-value\">" +
               "<p><span class=\"result\">" + roundTo(value.m2optimaal, 1) + "</span>&nbsp;m<sup>2</sup></p>" +
@@ -365,8 +384,12 @@ $(document).ready(function () {
   $(".resultaatButton").click( function () {
     if (app.flipped == false) {
 
-      if(invalidCheck()) {
-        return;
+      if (!devMode) {
+        
+        if(invalidCheck()) {
+          return;
+        }
+
       }
 
       $(".sonar-input-panel").toggle("drop");
