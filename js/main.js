@@ -231,6 +231,7 @@ var app = {
 var sVars = {
   constante: 0.161,
 
+  projectNaam: "",
   ruimteNaam: "",
   gebruik: 0,
   personenAantal: 0,
@@ -445,22 +446,44 @@ $(document).ready(function () {
   });
 
   $("#sonar-dump-button").click(function () {
+    var date = new Date();
     $("#sonar-dump-table").remove();
     $("#sonar-dump-values").append(
-      "<table id=\"sonar-dump-table\">" + 
-      "<tr><td>Klant/projectnaam</td><td>" + sVars.projectNaam + "</td></tr>" +
-      "<tr><td>Ruimtenaam</td><td>" + sVars.ruimteNaam + "</td></tr>" +
-      "<tr><td>Gebruik</td><td>" + $("#gebruik option:selected").text() + "</td></tr>" +
-      "<tr><td>Aantal personen</td><td>" + sVars.personenAantal + "</td></tr>" +
-      "<tr><td>Gedrag Personen</td><td>" + $("#personenGedrag option:selected").text() + "</td></tr>" +
-      "<tr><td>Extra wensen akoestiek</td><td>" + $("#wensen option:selected").text() + "</td></tr>" +
-      "<tr><td>Oppervlakte</td><td>" + sVars.oppervlakte + "</td></tr>" +
-      "<tr><td>Hoogte</td><td>" + sVars.hoogte + "</td></tr>" +
-      "<tr><td>Inhoud</td><td>" + sVars.inhoud + "</td></tr>" +
-      "<tr><td>Ambiance</td><td>" + $("#ambiance option:selected").text() + "</td></tr>" +
-      "<tr><td>Plaatsing akoestische materialen</td><td>" + $("#plaatsing option:selected").text() + "</td></tr>" +
-      "</table>"
+      "<div id=\"sonar-dump-table\"><h2>Samenvatting akoestisch adviesrapport</h2><br>" + 
+      "<hr><br>" +
+      "<p>Voor: <b>" + sVars.projectNaam + "</b></p>" +
+      "<p>Betreft: <b>" + sVars.ruimteNaam + "</b></p><br>" +
+      "<h3>Kenmerken van de ruimte</h3>" +
+      "<hr><br>" +
+      "<p>Oppervlakte (m<sup>2</sup>): <b>" + sVars.oppervlakte + "</b></p>" +
+      "<p>Hoogte (m): <b>" + sVars.hoogte + "</b></p>" +
+      "<p>Inhoud (m<sup>3</sup>): <b>" + sVars.inhoud + "</b></p><br>" +
+      "<p>Gebruik van de ruimte: <b>" + $("#gebruik option:selected").text() + "</b></p>" +
+      "<p>Ambiance: <b>" + $("#ambiance option:selected").text() + "</b></p>" +
+      "<p>Aantal aanwezige personen en gedrag: <b>" + sVars.personenAantal + "</b>, <b>" + $("#personenGedrag option:selected").text() + "</b></p>" +
+      "<p>Extra wensen akoestiek: <b>" + $("#wensen option:selected").text() + "</b></p>" +
+      "<p>Te verwachten plaatsing akoestische materialen: <b>" + $("#plaatsing option:selected").text() + "</b></p><br>" +
+      "<h3>Huidige akoestiek van de ruimte</h3><hr><br>" + 
+      "<p>Analyse van de huidige akoestiek: op basis van de akoestische meting, uitgevoerd op: <b>" + date.getDate()  + "/" + date.getMonth() + "/" + date.getFullYear() + "</b></p>" +
+      "<p>De huidige gewogen gemiddelde galmtijd in deze ruimte is <b>" + sVars.metingAvg + "</b> sec.</p>" +
+      "<p>Dit komt overeen met <b>" + sVars.kwaliteitsPercentage + "</b>% van de advieswaarde.</p><br>" +
+      "<h3>Advies voor optimale akoestiek in deze ruimte</h3>" +
+      "<hr><br>" +
+      "<p>Advieswaarde voor optimale akoestiek in deze ruimte: <b>" + sVars.advieswaarde + "</b> sec.</p>" +
+      "<br><h3>Akoestische producten en geadviseerde hoeveelheid ervan</h3>" +
+      "<hr><br>" +
+      "<p>Productnaam: 60% resultaat / 80% resultaat / 100% resultaat</p>" +
+      "<div id=\"dump-producten\"></div>" +
+      "<br><h3>Disclaimer</h3>" +
+      "<hr><br>" +
+      "<p><small>De calculaties zijn gebaseerd op akoestische modellen volgens ISO-354 en schattingen voor algemene situaties. Eventuele metingen zijn ad-hoc uitgevoerd, volgens de RT60 methode, zonder dat alle bouwkundige eigenschappen bekend zijn. De meetresultaten en calculaties zijn bedoeld ter indicatie; er kunnen geen rechten aan worden ontleend.</small></p>" +
+      "</div>"
     );
+    $.each(producten, function (key, value) {
+      $("#dump-producten").append(
+        "<p>" + value.naam + ": <b>" + value.m2hoorbaar + "</b> / <b>" + value.m2goed + "</b> / <b>" + value.m2optimaal + "</b></p>"
+      );
+    });
   });
 
 });
@@ -545,17 +568,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
   
-});
-
-/* ----------------------------------------
-|  JQuery Modal
-|----------------------------------------*/
-
-$("#sonar-dump-button").click(function () {
-  
-  $("#sonar-dump-modal").modal({
-    closeClass: "sonar-dump-modal-close",
-    closeText: "<i class=\"fa fa-times\" aria-hidden=\"true\"></i>",
-  });
-
 });
