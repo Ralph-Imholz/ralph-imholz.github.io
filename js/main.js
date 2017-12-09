@@ -455,9 +455,9 @@ $(document).ready(function () {
       "<p>Betreft: <b>" + sVars.ruimteNaam + "</b></p><br>" +
       "<h3>Kenmerken van de ruimte</h3>" +
       "<hr><br>" +
-      "<p>Oppervlakte (m<sup>2</sup>): <b>" + sVars.oppervlakte + "</b></p>" +
-      "<p>Hoogte (m): <b>" + sVars.hoogte + "</b></p>" +
-      "<p>Inhoud (m<sup>3</sup>): <b>" + sVars.inhoud + "</b></p><br>" +
+      "<p>Oppervlakte (m<sup>2</sup>): <b>" + roundTo(sVars.oppervlakte, 2) + "</b></p>" +
+      "<p>Hoogte (m): <b>" + roundTo(sVars.hoogte, 2) + "</b></p>" +
+      "<p>Inhoud (m<sup>3</sup>): <b>" + roundTo(sVars.inhoud, 2) + "</b></p><br>" +
       "<p>Gebruik van de ruimte: <b>" + $("#gebruik option:selected").text() + "</b></p>" +
       "<p>Ambiance: <b>" + $("#ambiance option:selected").text() + "</b></p>" +
       "<p>Aantal aanwezige personen en gedrag: <b>" + sVars.personenAantal + "</b>, <b>" + $("#personenGedrag option:selected").text() + "</b></p>" +
@@ -465,14 +465,14 @@ $(document).ready(function () {
       "<p>Te verwachten plaatsing akoestische materialen: <b>" + $("#plaatsing option:selected").text() + "</b></p><br>" +
       "<h3>Huidige akoestiek van de ruimte</h3><hr><br>" + 
       "<p>Analyse van de huidige akoestiek: op basis van de akoestische meting, uitgevoerd op: <b>" + date.getDate()  + "/" + date.getMonth() + "/" + date.getFullYear() + "</b></p>" +
-      "<p>De huidige gewogen gemiddelde galmtijd in deze ruimte is <b>" + sVars.metingAvg + "</b> sec.</p>" +
-      "<p>Dit komt overeen met <b>" + sVars.kwaliteitsPercentage + "</b>% van de advieswaarde.</p><br>" +
+      "<p>De huidige gewogen gemiddelde galmtijd in deze ruimte is <b>" + roundTo(sVars.metingAvg, 2) + "</b> sec.</p>" +
+      "<p>Dit komt overeen met <b>" + roundTo(sVars.kwaliteitsPercentage, 0) + "</b>% van de advieswaarde.</p><br>" +
       "<h3>Advies voor optimale akoestiek in deze ruimte</h3>" +
       "<hr><br>" +
       "<p>Advieswaarde voor optimale akoestiek in deze ruimte: <b>" + sVars.advieswaarde + "</b> sec.</p>" +
       "<br><h3>Akoestische producten en geadviseerde hoeveelheid ervan</h3>" +
       "<hr><br>" +
-      "<p>Productnaam: 60% resultaat / 80% resultaat / 100% resultaat</p>" +
+      "<p>(Productnaam: 60% resultaat / 80% resultaat / 100% resultaat)</p><br>" +
       "<div id=\"dump-producten\"></div>" +
       "<br><h3>Disclaimer</h3>" +
       "<hr><br>" +
@@ -481,7 +481,7 @@ $(document).ready(function () {
     );
     $.each(producten, function (key, value) {
       $("#dump-producten").append(
-        "<p>" + value.naam + ": <b>" + value.m2hoorbaar + "</b> / <b>" + value.m2goed + "</b> / <b>" + value.m2optimaal + "</b></p>"
+        "<p>" + value.naam + ": <b>" + roundTo(value.m2hoorbaar, 2) + "</b> / <b>" + roundTo(value.m2goed, 2) + "</b> / <b>" + roundTo(value.m2optimaal, 2) + "</b></p><br>"
       );
     });
   });
@@ -489,7 +489,7 @@ $(document).ready(function () {
 });
 
 function roundTo(value, sig) {
-  return value.toFixed(sig);
+  return Number(value.toFixed(sig));
 }
 
 function invalidCheck() {
