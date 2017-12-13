@@ -264,6 +264,11 @@ var sVars = {
 
 };
 
+var date = new Date();
+
+var dumpTextProducten = "";
+var dumpText = "";
+
 /* ----------------------------------------
 |  Sonar js
 |----------------------------------------*/
@@ -446,44 +451,42 @@ $(document).ready(function () {
   });
 
   $("#sonar-dump-button").click(function () {
-    var date = new Date();
+    dumpTextProducten = "";
+    dumpText = "";
     $("#sonar-dump-table").remove();
-    $("#sonar-dump-values").append(
-      "<div id=\"sonar-dump-table\"><h2>Samenvatting akoestisch adviesrapport</h2><br>" + 
-      "<hr><br>" +
-      "<p>Voor: <b>" + sVars.projectNaam + "</b></p>" +
-      "<p>Betreft: <b>" + sVars.ruimteNaam + "</b></p><br>" +
-      "<h3>Kenmerken van de ruimte</h3>" +
-      "<hr><br>" +
-      "<p>Oppervlakte (m<sup>2</sup>): <b>" + roundTo(sVars.oppervlakte, 2) + "</b></p>" +
-      "<p>Hoogte (m): <b>" + roundTo(sVars.hoogte, 2) + "</b></p>" +
-      "<p>Inhoud (m<sup>3</sup>): <b>" + roundTo(sVars.inhoud, 2) + "</b></p><br>" +
-      "<p>Gebruik van de ruimte: <b>" + $("#gebruik option:selected").text() + "</b></p>" +
-      "<p>Ambiance: <b>" + $("#ambiance option:selected").text() + "</b></p>" +
-      "<p>Aantal aanwezige personen en gedrag: <b>" + sVars.personenAantal + "</b>, <b>" + $("#personenGedrag option:selected").text() + "</b></p>" +
-      "<p>Extra wensen akoestiek: <b>" + $("#wensen option:selected").text() + "</b></p>" +
-      "<p>Te verwachten plaatsing akoestische materialen: <b>" + $("#plaatsing option:selected").text() + "</b></p><br>" +
-      "<h3>Huidige akoestiek van de ruimte</h3><hr><br>" + 
-      "<p>Analyse van de huidige akoestiek: op basis van de akoestische meting, uitgevoerd op: <b>" + date.getDate()  + "/" + date.getMonth() + "/" + date.getFullYear() + "</b></p>" +
-      "<p>De huidige gewogen gemiddelde galmtijd in deze ruimte is <b>" + roundTo(sVars.metingAvg, 2) + "</b> sec.</p>" +
-      "<p>Dit komt overeen met <b>" + roundTo(sVars.kwaliteitsPercentage, 0) + "</b>% van de advieswaarde.</p><br>" +
-      "<h3>Advies voor optimale akoestiek in deze ruimte</h3>" +
-      "<hr><br>" +
-      "<p>Advieswaarde voor optimale akoestiek in deze ruimte: <b>" + sVars.advieswaarde + "</b> sec.</p>" +
-      "<br><h3>Akoestische producten en geadviseerde hoeveelheid ervan</h3>" +
-      "<hr><br>" +
-      "<p>(Productnaam: 60% resultaat / 80% resultaat / 100% resultaat)</p><br>" +
-      "<div id=\"dump-producten\"></div>" +
-      "<br><h3>Disclaimer</h3>" +
-      "<hr><br>" +
-      "<p><small>De calculaties zijn gebaseerd op akoestische modellen volgens ISO-354 en schattingen voor algemene situaties. Eventuele metingen zijn ad-hoc uitgevoerd, volgens de RT60 methode, zonder dat alle bouwkundige eigenschappen bekend zijn. De meetresultaten en calculaties zijn bedoeld ter indicatie; er kunnen geen rechten aan worden ontleend.</small></p>" +
-      "</div>"
-    );
     $.each(producten, function (key, value) {
-      $("#dump-producten").append(
-        "<p>" + value.naam + ": <b>" + roundTo(value.m2hoorbaar, 2) + "</b> / <b>" + roundTo(value.m2goed, 2) + "</b> / <b>" + roundTo(value.m2optimaal, 2) + "</b></p><br>"
-      );
+      dumpTextProducten = dumpTextProducten + "<p>" + value.naam + ": <b>" + roundTo(value.m2hoorbaar, 2) + "</b> / <b>" + roundTo(value.m2goed, 2) + "</b> / <b>" + roundTo(value.m2optimaal, 2) + "</b></p><br>";
     });
+    dumpText = "<div id=\"sonar-dump-table\"><h2>Samenvatting akoestisch adviesrapport</h2><br>" + 
+    "<hr><br>" +
+    "<p>Voor: <b>" + sVars.projectNaam + "</b></p>" +
+    "<p>Betreft: <b>" + sVars.ruimteNaam + "</b></p><br>" +
+    "<h3>Kenmerken van de ruimte</h3>" +
+    "<hr><br>" +
+    "<p>Oppervlakte (m<sup>2</sup>): <b>" + roundTo(sVars.oppervlakte, 2) + "</b></p>" +
+    "<p>Hoogte (m): <b>" + roundTo(sVars.hoogte, 2) + "</b></p>" +
+    "<p>Inhoud (m<sup>3</sup>): <b>" + roundTo(sVars.inhoud, 2) + "</b></p><br>" +
+    "<p>Gebruik van de ruimte: <b>" + $("#gebruik option:selected").text() + "</b></p>" +
+    "<p>Ambiance: <b>" + $("#ambiance option:selected").text() + "</b></p>" +
+    "<p>Aantal aanwezige personen en gedrag: <b>" + sVars.personenAantal + "</b>, <b>" + $("#personenGedrag option:selected").text() + "</b></p>" +
+    "<p>Extra wensen akoestiek: <b>" + $("#wensen option:selected").text() + "</b></p>" +
+    "<p>Te verwachten plaatsing akoestische materialen: <b>" + $("#plaatsing option:selected").text() + "</b></p><br>" +
+    "<h3>Huidige akoestiek van de ruimte</h3><hr><br>" + 
+    "<p>Analyse van de huidige akoestiek: op basis van de akoestische meting, uitgevoerd op: <b>" + date.getDate()  + "-" + date.getMonth() + "-" + date.getFullYear() + "</b></p>" +
+    "<p>De huidige gewogen gemiddelde galmtijd in deze ruimte is <b>" + roundTo(sVars.metingAvg, 2) + "</b> sec.</p>" +
+    "<p>Dit komt overeen met <b>" + roundTo(sVars.kwaliteitsPercentage, 0) + "</b>% van de advieswaarde.</p><br>" +
+    "<h3>Advies voor optimale akoestiek in deze ruimte</h3>" +
+    "<hr><br>" +
+    "<p>Advieswaarde voor optimale akoestiek in deze ruimte: <b>" + sVars.advieswaarde + "</b> sec.</p>" +
+    "<br><h3>Akoestische producten en geadviseerde hoeveelheid ervan</h3>" +
+    "<hr><br>" +
+    "<p>(Productnaam: 60% resultaat / 80% resultaat / 100% resultaat)</p><br>" +
+    "<div id=\"dump-producten\">" + dumpTextProducten + "</div>" +
+    "<br><h3>Disclaimer</h3>" +
+    "<hr><br>" +
+    "<p><small>De calculaties zijn gebaseerd op akoestische modellen volgens ISO-354 en schattingen voor algemene situaties. Eventuele metingen zijn ad-hoc uitgevoerd, volgens de RT60 methode, zonder dat alle bouwkundige eigenschappen bekend zijn. De meetresultaten en calculaties zijn bedoeld ter indicatie; er kunnen geen rechten aan worden ontleend.</small></p>" +
+    "</div>";
+    $("#sonar-dump-values").append(dumpText);
   });
 
 });
@@ -568,4 +571,34 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
   
+});
+
+/* ----------------------------------------
+|  EmailJS
+|----------------------------------------*/
+
+$(document).ready(function () {
+  var pattern = /^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_.-])+.([a-zA-Z])+([a-zA-Z])+/;
+
+  $("#dumpmailButton").click(function () {
+    var dumpAddress = $("#dumpmail").val();
+    var addressIsValid = pattern.test(dumpAddress);
+    if (addressIsValid) {
+      $("#dumpmail-confirm").hide();
+      $("#dumpmailButton").addClass("is-loading");
+      emailjs.send("gmail", "sonar_dump_mail", {"email":$("#dumpmail").val(),"date":date.getDate()  + "-" + date.getMonth() + "-" + date.getFullYear(),"project":sVars.projectNaam,"content":dumpText}).then(function () {
+        setTimeout(function() {
+          $("#dumpmailButton").removeClass("is-loading");
+          $("#dumpmail-confirm").show();
+          $("#dumpmail").val("");
+        }, 1000);
+      });
+    } else {
+      if (dumpAddress == "") {
+        alert("Vul alstublieft een e-mail adres in.");
+      } else {
+        alert("Vul alstublieft een geldig e-mail adres in.");
+      }
+    }
+  });
 });

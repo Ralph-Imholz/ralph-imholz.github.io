@@ -15,7 +15,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Rivasono Sonar 1.0.2</title>
+  <title>Rivasono Sonar 1.1.0</title>
 
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -25,12 +25,18 @@
 
   <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script type="text/javascript">
+     (function(){
+        emailjs.init("user_p2xgCMh544iRlBN00PNGb");
+     })();
+  </script>
 </head>
 <body>
   
   <nav class="navbar is-fixed-top">
     <div class="navbar-brand">
-      <a href="" class="navbar-item logo">Rivasono Sonar 1.0.2 </a>
+      <a href="" class="navbar-item logo">Rivasono Sonar 1.1.0 </a>
       <button class="button navbar-burger" data-target="navMenu">
         <span></span>
         <span></span>
@@ -330,6 +336,12 @@
   </main>
 
   <div id="sonar-dump-modal" class="modal">
+    <div class="dumpmail-box">
+      <h4>Samenvatting mailen</h4>
+      <p><input type="email" name="dumpmail" id="dumpmail" placeholder="Uw e-mail adres">
+      <button id="dumpmailButton" class="button"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;Mail</button><span id="dumpmail-confirm"><i class="fa fa-check" aria-hidden="true"></i>
+&nbsp;E-mail verzonden!</span></p>
+    </div>
     <br>
     <div id="sonar-dump-values">
 
