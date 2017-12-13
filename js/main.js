@@ -455,7 +455,7 @@ $(document).ready(function () {
     dumpText = "";
     $("#sonar-dump-table").remove();
     $.each(producten, function (key, value) {
-      dumpTextProducten = dumpTextProducten + "<p>" + value.naam + ": <b>" + roundTo(value.m2hoorbaar, 2) + "</b> / <b>" + roundTo(value.m2goed, 2) + "</b> / <b>" + roundTo(value.m2optimaal, 2) + "</b></p><br>";
+      dumpTextProducten = dumpTextProducten + "<p style=\"margin: 0\">" + value.naam + ": <b>" + roundTo(value.m2hoorbaar, 2) + "</b> m<sup>2</sup> / <b>" + roundTo(value.m2goed, 2) + "</b> m<sup>2</sup> / <b>" + roundTo(value.m2optimaal, 2) + " m<sup>2</sup></b></p><br>";
     });
     dumpText = "<div id=\"sonar-dump-table\"><h2>Samenvatting akoestisch adviesrapport</h2><br>" + 
     "<hr><br>" +
@@ -477,7 +477,7 @@ $(document).ready(function () {
     "<p>Dit komt overeen met <b>" + roundTo(sVars.kwaliteitsPercentage, 0) + "</b>% van de advieswaarde.</p><br>" +
     "<h3>Advies voor optimale akoestiek in deze ruimte</h3>" +
     "<hr><br>" +
-    "<p>Advieswaarde voor optimale akoestiek in deze ruimte: <b>" + sVars.advieswaarde + "</b> sec.</p>" +
+    "<p>Advieswaarde voor optimale akoestiek in deze ruimte: <b>" + roundTo(sVars.advieswaarde, 2) + "</b> sec.</p>" +
     "<br><h3>Akoestische producten en geadviseerde hoeveelheid ervan</h3>" +
     "<hr><br>" +
     "<p>(Productnaam: 60% resultaat / 80% resultaat / 100% resultaat)</p><br>" +
