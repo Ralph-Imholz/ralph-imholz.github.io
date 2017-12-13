@@ -464,7 +464,9 @@ button.sonar-nav-button {
   .dumpmail-box input {
     padding: 0.5rem 1rem;
     font-size: 1rem;
-    border: none; }
+    border: none;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem; }
     .dumpmail-box input::-webkit-input-placeholder {
       color: #676767; }
     .dumpmail-box input:-ms-input-placeholder {
@@ -474,7 +476,6 @@ button.sonar-nav-button {
   .dumpmail-box button {
     padding: 0.5rem 1rem;
     font-size: 1rem;
-    margin-left: 0.5rem;
     margin-right: 1rem;
     color: #ffffff;
     background-color: #343434;
@@ -492,7 +493,9 @@ button.sonar-nav-button {
     .dumpmail-box button:focus {
       color: #ffffff; }
   .dumpmail-box span {
-    display: none; }
+    display: none;
+    height: 1rem;
+    padding-top: 0.5rem; }
 
 @media (max-width: 600px) {
   html {
