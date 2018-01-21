@@ -1,4 +1,4 @@
-var devMode = false;
+var devMode = true;
 
 /* ----------------------------------------
 |  Variabelen
@@ -496,8 +496,6 @@ function roundTo(value, sig) {
 }
 
 function invalidCheck() {
-
-
 
   if ($("#projectNaam").val() == "") {
     alert("Vul de Klant/projectnaam in.");
