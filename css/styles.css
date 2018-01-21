@@ -492,6 +492,8 @@ button.sonar-nav-button {
     padding-top: 0.5rem; }
 
 @media (max-width: 600px) {
+  input#dumpmail {
+    width: 100%; }
   html {
     font-size: 18px; }
   .sonar-inputs {

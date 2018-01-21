@@ -406,7 +406,7 @@ function sonarCalculate() {
       $(element).html("<i class=\"fa fa-square-o\" aria-hidden=\"true\"></i>");
     } else {
       cardImg.css("flex-grow", "1");
-      cardValues.css("height", "5.5rem");
+      cardValues.css("height", "6rem");
       producten[$(element).attr("productId")].shown = true;
       $(element).html("<i class=\"fa fa-check-square-o\" aria-hidden=\"true\"></i>");
     }
