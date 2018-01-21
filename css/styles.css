@@ -113,16 +113,13 @@ radio {
 
 .sonar-app-nav {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   background-color: #009ad9;
@@ -138,16 +135,13 @@ radio {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
   .sonar-app-nav .sonar-app-nav-buttons {
     display: -webkit-box;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
     -webkit-box-pack: center;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
     min-width: 300px; }
@@ -174,20 +168,16 @@ radio {
 main {
   max-width: 100vw;
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: start;
-  -webkit-align-items: flex-start;
   -ms-flex-align: start;
   align-items: flex-start;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center; }
 
@@ -211,12 +201,10 @@ main {
   .sonar-panel .sonar-input {
     padding: 0.5rem 1rem;
     display: -webkit-box;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column; }
     .sonar-panel .sonar-input label {
@@ -234,6 +222,9 @@ main {
         color: #a6a6a6; }
       .sonar-panel .sonar-input input:-ms-input-placeholder,
       .sonar-panel .sonar-input select:-ms-input-placeholder {
+        color: #a6a6a6; }
+      .sonar-panel .sonar-input input::-ms-input-placeholder,
+      .sonar-panel .sonar-input select::-ms-input-placeholder {
         color: #a6a6a6; }
       .sonar-panel .sonar-input input::placeholder,
       .sonar-panel .sonar-input select::placeholder {
@@ -253,12 +244,10 @@ main {
 
 .sonar-inputs {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row; }
   .sonar-inputs.sonar-producten .sonar-inputs-column {
@@ -267,7 +256,6 @@ main {
 .sonar-inputs-column {
   padding: 8px;
   -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1; }
 
@@ -279,17 +267,14 @@ main {
 .sonar-meetwaarden {
   position: relative;
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column; }
 
 #invoerPanelButton {
-  -webkit-align-self: flex-end;
   -ms-flex-item-align: end;
   align-self: flex-end;
   border-radius: 4px;
@@ -304,20 +289,16 @@ main {
   height: 100%;
   padding: 1.5rem;
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   -webkit-box-align: center;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
   display: none;
@@ -333,91 +314,99 @@ main {
 
 .sonar-product-card {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  -webkit-flex-flow: row wrap;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
   padding: 0 1rem;
   border-bottom: 1px solid #a6a6a6; }
   .sonar-product-card .sonar-product-img {
-    -webkit-flex-basis: 0;
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
     -ms-flex-preferred-size: 0;
     flex-basis: 0;
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
     display: -webkit-box;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
     -webkit-box-align: center;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center; }
   .sonar-product-card .sonar-product-content {
     display: -webkit-box;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-    -webkit-flex-flow: column nowrap;
     -ms-flex-flow: column nowrap;
     flex-flow: column nowrap;
-    -webkit-justify-content: space-around;
     -ms-flex-pack: distribute;
     justify-content: space-around;
     -webkit-box-align: stretch;
-    -webkit-align-items: stretch;
     -ms-flex-align: stretch;
     align-items: stretch;
-    -webkit-flex-basis: 0;
     -ms-flex-preferred-size: 0;
     flex-basis: 0;
     -webkit-box-flex: 3;
-    -webkit-flex-grow: 3;
     -ms-flex-positive: 3;
     flex-grow: 3; }
     .sonar-product-card .sonar-product-content .sonar-product-title {
       -webkit-box-flex: 1;
-      -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
       flex-grow: 1;
-      -webkit-flex-basis: 0;
       -ms-flex-preferred-size: 0;
       flex-basis: 0;
       padding: 1rem;
-      padding-bottom: 0; }
+      padding-bottom: 0.5rem; }
     .sonar-product-card .sonar-product-content .sonar-product-values {
+      -webkit-transition: 0.2s;
+      -o-transition: 0.2s;
+      transition: 0.2s;
       display: -webkit-box;
-      display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
       -webkit-box-orient: horizontal;
       -webkit-box-direction: normal;
-      -webkit-flex-flow: row nowrap;
       -ms-flex-flow: row nowrap;
       flex-flow: row nowrap;
-      font-size: 0.9rem; }
+      font-size: 0.9rem;
+      overflow: hidden;
+      height: 0; }
       .sonar-product-card .sonar-product-content .sonar-product-values .sonar-product-value {
         padding: 0.5rem;
+        padding-top: 0;
         -webkit-box-flex: 1;
-        -webkit-flex-grow: 1;
         -ms-flex-positive: 1;
         flex-grow: 1;
-        -webkit-flex-basis: 0;
         -ms-flex-preferred-size: 0;
         flex-basis: 0;
         text-align: center; }
+
+.product-card-toggle {
+  float: right;
+  border: none;
+  border-radius: 4px;
+  padding: 0.4rem 0.7rem;
+  background: none;
+  margin: -0.5rem;
+  margin-top: -0.75rem;
+  font-size: 1.4rem; }
+  .product-card-toggle:hover {
+    cursor: pointer; }
+  .product-card-toggle i {
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s; }
+  .product-card-toggle i.fa-check-square-o {
+    margin-right: -0.2rem; }
 
 #sonar-dump-button {
   float: right;
@@ -474,6 +463,8 @@ button.sonar-nav-button {
       color: #676767; }
     .dumpmail-box input:-ms-input-placeholder {
       color: #676767; }
+    .dumpmail-box input::-ms-input-placeholder {
+      color: #676767; }
     .dumpmail-box input::placeholder {
       color: #676767; }
   .dumpmail-box button {
@@ -506,18 +497,7 @@ button.sonar-nav-button {
   .sonar-inputs {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column; }
-  .sonar-product-card {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column; }
-    .sonar-product-card .sonar-product-content .sonar-product-values {
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-      flex-direction: column; } }
+    .sonar-inputs .sonar-product-img {
+      display: none; } }

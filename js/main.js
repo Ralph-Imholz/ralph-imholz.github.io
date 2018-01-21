@@ -142,6 +142,7 @@ var advieswaarden = [
 
 var producten = [
   {
+    id: 0,
     naam: "Ceiling Panel kader",
     factor: 0.86,
     imgUrl: "https://www.rivasono.nl/images/Praktijkvoorbeelden_600x338/akoestische_plafondpanelen_in_een_reaturant2.jpg",
@@ -149,8 +150,10 @@ var producten = [
     m2goed: 0,
     m2optimaal: 0,
     productUrl: "https://www.rivasono.nl/akoestische-producten/aan-het-plafond/plafondpanelen",
+    shown: false,
   },
   {
+    id: 1,
     naam: "Ceiling Panel randloos",
     factor: 0.87,
     imgUrl: "https://www.rivasono.nl/images/Praktijkvoorbeelden_600x338/akoestische_plafondpanelen_in_een_vergaderruimte.jpg",
@@ -158,8 +161,10 @@ var producten = [
     m2goed: 0,
     m2optimaal: 0,
     productUrl: "https://www.rivasono.nl/akoestische-producten/aan-het-plafond/plafondpanelen/ceiling-panel-randloos-wit-akoestisch-plafondpaneel",
+    shown: false,
   },
   {
+    id: 2,
     naam: "Color Panel",
     factor: 0.86,
     imgUrl: "https://www.rivasono.nl/images/Producten_600x338/rivasono_akoestisch_wandpaneel_color_panel.jpg",
@@ -167,8 +172,10 @@ var producten = [
     m2goed: 0,
     m2optimaal: 0,
     productUrl: "https://www.rivasono.nl/akoestische-producten/aan-de-wand/wandpanelen",
+    shown: false,
   },
   {
+    id: 3,
     naam: "Design Panel 3.5",
     factor: 0.85,
     imgUrl: "https://www.rivasono.nl/images/Praktijkvoorbeelden_600x338/Akoestisch_wandpaneel_Design_Panel_bij_de_tafel.jpg",
@@ -176,8 +183,10 @@ var producten = [
     m2goed: 0,
     m2optimaal: 0,
     productUrl: "https://www.rivasono.nl/akoestische-producten/aan-de-wand/wandpanelen/rivasono-akoestisch-design-paneel",
+    shown: false,
   },
   {
+    id: 4,
     naam: "Panel SAB",
     factor: 0.79,
     imgUrl: "https://www.rivasono.nl/images/Praktijkvoorbeelden_600x338/Rvasono-praktijkvoorbeeld-akoestiek-verbeteren-Panel-SAB.jpg",
@@ -185,8 +194,10 @@ var producten = [
     m2goed: 0,
     m2optimaal: 0,
     productUrl: "https://www.rivasono.nl/akoestische-producten/aan-de-wand/wandpanelen/rivasono-flat-panel-sab-akoestisch-wandpaneel-en-plafondpaneel",
+    shown: false,
   },
   {
+    id: 5,
     naam: "Panel VQ",
     factor: 0.89,
     imgUrl: "https://www.rivasono.nl/images/Praktijkvoorbeelden_600x338/Rivasono-praktijkvoorbeeld-akoestiek-verbeteren-met-Panel-VQ1.jpg",
@@ -194,8 +205,10 @@ var producten = [
     m2goed: 0,
     m2optimaal: 0,
     productUrl: "https://www.rivasono.nl/akoestische-producten/aan-de-wand/wandpanelen/rivasono-panel-vq-akoestisch-wand-en-plafondpaneel",
+    shown: false,
   },
   {
+    id: 6,
     naam: "Plafondbaffle CT",
     factor: 0.63,
     imgUrl: "https://www.rivasono.nl/images/Praktijkvoorbeelden_600x338/rvasono_praktijkvoorbeeld_akoestiek_verbeteren_kerk_kapel_zorgcentrum_wiekendael_plafondbaffles_aan_haken.jpg",
@@ -203,8 +216,10 @@ var producten = [
     m2goed: 0,
     m2optimaal: 0,
     productUrl: "https://www.rivasono.nl/akoestische-producten/plafondbattle-ct-akoestische-plafondbaffle",
+    shown: false,
   },
   {
+    id: 7,
     naam: "Panel CA",
     factor: 0.68,
     imgUrl: "https://www.rivasono.nl/images/Praktijkvoorbeelden_600x338/rivasono_praktijkvoorbeeld_onzichtbaar_akoestiek_verbeteren_met_plafondpanelen_in_een_restaurant.jpg",
@@ -212,8 +227,10 @@ var producten = [
     m2goed: 0,
     m2optimaal: 0,
     productUrl: "https://www.rivasono.nl/akoestische-producten/aan-het-plafond/plafondpanelen",
+    shown: false,
   },
   {
+    id: 8,
     naam: "Wall Panel System",
     factor: 0.87,
     imgUrl: "https://www.rivasono.nl/images/Praktijkvoorbeelden_600x338/Akoestisch-wandpaneelsysteem-zwart.jpg",
@@ -221,6 +238,7 @@ var producten = [
     m2goed: 0,
     m2optimaal: 0,
     productUrl: "https://www.rivasono.nl/akoestische-producten/aan-de-wand/wandsystemen/rivasono-akoestisch-wandpaneel-systeem",
+    shown: false,
   },
 ];
 
@@ -351,7 +369,7 @@ function sonarCalculate() {
         "</div>" +
         "<div class=\"sonar-product-content\">" +
           "<div class=\"sonar-product-title\">" +
-            "<a href=\"" + value.productUrl + "\"><h3>" + value.naam + "</h3></a>" +
+            "<h3><a href=\"" + value.productUrl + "\">" + value.naam + "</a><button class=\"product-card-toggle\" productId=\"" + value.id + "\"><i class=\"fa fa-square-o\" aria-hidden=\"true\"></i></button></h3>" +
           "</div>" +
           "<div class=\"sonar-product-values\">" +
             "<div class=\"sonar-product-value\">" +
@@ -370,7 +388,29 @@ function sonarCalculate() {
         "</div>"+
       "</div>"
     );
+
   });
+
+  $(".product-card-toggle").click(function () {
+    toggleProduct(this);
+  });
+
+  function toggleProduct(element) {
+    var closestCard = $(element).closest(".sonar-product-card");
+    var cardImg = closestCard.find(".sonar-product-img");
+    var cardValues = closestCard.find(".sonar-product-values");
+    if (producten[$(element).attr("productId")].shown == true) {
+      cardImg.css("flex-grow", "0");
+      cardValues.css("height", "0");
+      producten[$(element).attr("productId")].shown = false;
+      $(element).html("<i class=\"fa fa-square-o\" aria-hidden=\"true\"></i>");
+    } else {
+      cardImg.css("flex-grow", "1");
+      cardValues.css("height", "5.5rem");
+      producten[$(element).attr("productId")].shown = true;
+      $(element).html("<i class=\"fa fa-check-square-o\" aria-hidden=\"true\"></i>");
+    }
+  }
 
   console.log("-- Berekening voltooid --\n\n");
 }
@@ -455,7 +495,9 @@ $(document).ready(function () {
     dumpText = "";
     $("#sonar-dump-table").remove();
     $.each(producten, function (key, value) {
-      dumpTextProducten = dumpTextProducten + "<p style=\"margin: 0\">" + value.naam + ": <b>" + roundTo(value.m2hoorbaar, 2) + "</b> m<sup>2</sup> / <b>" + roundTo(value.m2goed, 2) + "</b> m<sup>2</sup> / <b>" + roundTo(value.m2optimaal, 2) + " m<sup>2</sup></b></p><br>";
+      if (value.shown == true) {
+        dumpTextProducten = dumpTextProducten + "<p style=\"margin: 0\">" + value.naam + ": <b>" + roundTo(value.m2hoorbaar, 2) + "</b> m<sup>2</sup> / <b>" + roundTo(value.m2goed, 2) + "</b> m<sup>2</sup> / <b>" + roundTo(value.m2optimaal, 2) + " m<sup>2</sup></b></p><br>";
+      }
     });
     dumpText = "<div id=\"sonar-dump-table\"><h2>Samenvatting akoestisch adviesrapport</h2><br>" + 
     "<hr><br>" +
