@@ -286,14 +286,18 @@ main
   background-color: $light-gray
 
 .sonar-product-card
-  margin-bottom: 2rem
+  margin-top: 1.5rem
   background-color: $white
   box-shadow: $box-shad1
   overflow: hidden
   position: relative
-  img
+  .sonar-product-img
     transition: 0.2s
+    max-height: 0
     width: 100%
+    overflow: hidden
+    img
+      width: 100%
   .sonar-product-content
     display: flex
     flex-flow: column nowrap
@@ -398,8 +402,8 @@ main
   font-size: 0.7rem
   color: rgba(0,0,0,0.6)
 
-.sonar-product-card-hideables, .sonar-product-img
-  display: none
+.sonar-product-card-hideables
+  max-height: 0
 
 button.sonar-nav-button
   border-top-left-radius: 4px
@@ -460,8 +464,6 @@ button.sonar-nav-button
     font-size: 18px
   .sonar-inputs
     flex-direction: column
-    .sonar-product-img
-      display: none
   .sonar-product-card .sonar-product-content .sonar-product-values
     flex-direction: column
   .sonar-product-card-area-input

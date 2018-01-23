@@ -303,6 +303,26 @@ var dumpText = "";
 function sonarCalculate() {
   console.log("-- Berekening gestart --");
 
+  console.log("Input");
+  sVars.projectNaam = $("#projectNaam").val();
+
+  sVars.ruimteNaam = $("#ruimteNaam").val();
+  sVars.gebruik = parseFloat($("#gebruik").val());
+  sVars.personenAantal = parseFloat($("#personenAantal").val());
+  sVars.personenGedrag = parseFloat($("#personenGedrag").val());
+  sVars.wensen = parseFloat($("#wensen").val());
+  sVars.oppervlakte = parseFloat($("#oppervlakte").val());
+  sVars.hoogte = parseFloat($("#hoogte").val());
+  sVars.inhoud = parseFloat($("#inhoud").val());
+  sVars.ambiance = parseFloat($("#ambiance").val());
+  sVars.plaatsing = parseFloat($("#plaatsing").val());
+  sVars.hz125 = parseFloat($("#hz125").val());
+  sVars.hz250 = parseFloat($("#hz250").val());
+  sVars.hz500 = parseFloat($("#hz500").val());
+  sVars.hz1000 = parseFloat($("#hz1000").val());
+  sVars.hz2000 = parseFloat($("#hz2000").val());
+  sVars.hz4000 = parseFloat($("#hz4000").val());
+
   console.log("Oppervlakte \t\t= \t" + sVars.oppervlakte);
   console.log("Hoogte \t\t\t= \t" + sVars.hoogte);
   console.log("Inhoud \t\t\t= \t" + sVars.inhoud);
@@ -351,12 +371,12 @@ function sonarCalculate() {
   $("#rPersonenAantal").val(sVars.personenAantal);
   $("#rPersonenGedrag").val($("#personenGedrag option:selected").text());
   $("#rWensen").val($("#wensen option:selected").text());
-  $("#rOppervlakte").text(roundTo(sVars.oppervlakte, 2));
-  $("#rHoogte").text(roundTo(sVars.hoogte, 2));
-  $("#rInhoud").text(roundTo(sVars.inhoud, 2));
+  $("#rOppervlakte").text(dotToComma(roundTo(sVars.oppervlakte, 2)));
+  $("#rHoogte").text(dotToComma(roundTo(sVars.hoogte, 2)));
+  $("#rInhoud").text(dotToComma(roundTo(sVars.inhoud, 2)));
   $("#rAmbiance").val($("#ambiance option:selected").text());
   $("#rPlaatsing").val($("#plaatsing option:selected").text());
-  $("#rHuidigeGalmtijd").text(roundTo(sVars.metingAvg, 2));
+  $("#rHuidigeGalmtijd").text(dotToComma(roundTo(sVars.metingAvg, 2)));
   $("#rKwaliteitPercentage").text(sVars.kwaliteitsPercentage);
   if (sVars.kwaliteitsPercentage < 80) {
     $("#rKwaliteitPercentage").css("color", "#cc0000");
@@ -366,14 +386,16 @@ function sonarCalculate() {
     $("#rKwaliteitPercentage").css("color", "#29a329");
   }
 
-  $("#rAdvieswaarde").text(roundTo(sVars.advieswaarde, 2));
+  $("#rAdvieswaarde").text(dotToComma(roundTo(sVars.advieswaarde, 2)));
 
   $(".sonar-product-card").remove();
 
   $.each(producten, function (key, value) {
     $(".sonar-product-cards").append(
       "<div class=\"sonar-product-card\">" +
-        "<img class=\"sonar-product-img\" src=\"" + value.imgUrl + "\" alt=\"" + value.naam + "\">" +
+        "<div class=\"sonar-product-img\"> " + 
+          "<img src=\"" + value.imgUrl + "\" alt=\"" + value.naam + "\">" +
+        "</div>" +
         "<div class=\"sonar-product-content\">" +
           "<div class=\"sonar-product-title\">" +
             "<h3>" + value.naam + "<button class=\"product-card-toggle\" productId=\"" + value.id + "\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i></button></h3>" +
@@ -382,16 +404,16 @@ function sonarCalculate() {
           "<div class=\"sonar-product-card-hideables\">" +
             "<div class=\"sonar-product-values\">" +
               "<div class=\"sonar-product-value\">" +
-                "<p><span class=\"result\">" + roundTo(value.m2hoorbaar, 1) + "</span>&nbsp;m<sup>2</sup></p>" +
-                "<p><span class=\"result\">" + roundTo(sVars.advieswaarde / 0.6, 2) + "</span> sec<br>60% resultaat</p>" +
+                "<p><span class=\"result\">" + dotToComma(roundTo(value.m2hoorbaar, 1)) + "</span>&nbsp;m<sup>2</sup></p>" +
+                "<p><span class=\"result\">" + dotToComma(roundTo(sVars.advieswaarde / 0.6, 2)) + "</span> sec<br>60% resultaat</p>" +
               "</div>" +
               "<div class=\"sonar-product-value\">" +
-                "<p><span class=\"result\">" + roundTo(value.m2goed, 1) + "</span>&nbsp;m<sup>2</sup></p>" +
-                "<p><span class=\"result\">" + roundTo(sVars.advieswaarde / 0.8, 2) + "</span> sec<br>80% resultaat</p>" +
+                "<p><span class=\"result\">" + dotToComma(roundTo(value.m2goed, 1)) + "</span>&nbsp;m<sup>2</sup></p>" +
+                "<p><span class=\"result\">" + dotToComma(roundTo(sVars.advieswaarde / 0.8, 2)) + "</span> sec<br>80% resultaat</p>" +
               "</div>" +
               "<div class=\"sonar-product-value\">" +
-                "<p><span class=\"result\">" + roundTo(value.m2optimaal, 1) + "</span>&nbsp;m<sup>2</sup></p>" +
-                "<p><span class=\"result\">" + roundTo(sVars.advieswaarde, 2) + "</span> sec<br>100% resultaat</p>" +
+                "<p><span class=\"result\">" + dotToComma(roundTo(value.m2optimaal, 1)) + "</span>&nbsp;m<sup>2</sup></p>" +
+                "<p><span class=\"result\">" + dotToComma(roundTo(sVars.advieswaarde, 2)) + "</span> sec<br>100% resultaat</p>" +
               "</div>" +
             "</div>" +
             "<div class=\"sonar-product-card-area-input\">" +
@@ -425,13 +447,13 @@ function sonarCalculate() {
     if (producten[$(element).attr("productId")].shown == true) {
       producten[$(element).attr("productId")].shown = false;
       $(element).find("i").css("opacity", "0");
-      cardImg.css("display", "none");
-      cardHideables.css("display", "none");
+      cardImg.css("max-height", "0");
+      cardHideables.css("max-height", "0");
     } else {
       producten[$(element).attr("productId")].shown = true;
       $(element).find("i").css("opacity", "1");
-      cardImg.css("display", "block");
-      cardHideables.css("display", "block");
+      cardImg.css("max-height", "400px");
+      cardHideables.css("max-height", "800px");
     }
   }
 
@@ -440,8 +462,8 @@ function sonarCalculate() {
     var parent = self.closest(".sonar-product-card-area-input");
     var result = parent.find(".result");
     var resultPerc = parent.find(".resultPerc");
-    var resultVal = sVars.constante * sVars.inhoud / (sVars.huidigeAbsorbtie + parseFloat(self.val()) * producten[self.attr("productid")].factor * sVars.plaatsing);
-    result.text(roundTo(resultVal, 2));
+    var resultVal = sVars.constante * sVars.inhoud / (sVars.huidigeAbsorbtie + sVars.personenFactor + parseFloat(self.val()) * producten[self.attr("productid")].factor * sVars.plaatsing);
+    result.text(dotToComma(roundTo(resultVal, 2)));
     $(".resultPerc").text(roundTo(100/(resultVal/sVars.advieswaarde), 0));
   });
 
@@ -494,21 +516,10 @@ $(document).ready(function () {
     }
   });
 
-  $("select").change( function () {
-    sVars[$(this).attr("id")] =  parseFloat($(this).val());
-  });
-  
-  $("input[type=text]").on("keyup", function () {
-    sVars[$(this).attr("id")] = $(this).val();
-  });
-  
-  $("input[type=number]").on("keyup", function () {
-    sVars[$(this).attr("id")] = parseFloat($(this).val());
-  });
-
   $("#oppervlakte, #hoogte").on("keyup", function () {
-    $("#inhoud").val(roundTo(sVars["oppervlakte"] * sVars["hoogte"], 2));
-    sVars["inhoud"] = sVars["oppervlakte"] * sVars["hoogte"];
+    var area = $("#oppervlakte").val().toString().replace(/\,/g, '.');
+    var height = $("#hoogte").val().toString().replace(/\,/g, '.');
+    $("#inhoud").val((area * height).toFixed(2));
   });
 
   $("#meetwaardenCheck").change(function () {
@@ -529,7 +540,7 @@ $(document).ready(function () {
     $("#sonar-dump-table").remove();
     $.each(producten, function (key, value) {
       if (value.shown == true) {
-        dumpTextProducten = dumpTextProducten + "<p style=\"margin: 0\">" + value.naam + ": <b>" + roundTo(value.m2hoorbaar, 2) + "</b> m<sup>2</sup> / <b>" + roundTo(value.m2goed, 2) + "</b> m<sup>2</sup> / <b>" + roundTo(value.m2optimaal, 2) + " m<sup>2</sup></b></p><br>";
+        dumpTextProducten = dumpTextProducten + "<p style=\"margin: 0\">" + value.naam + ": <b>" + dotToComma(roundTo(value.m2hoorbaar, 2)) + "</b> m<sup>2</sup> / <b>" + dotToComma(roundTo(value.m2goed, 2)) + "</b> m<sup>2</sup> / <b>" + dotToComma(roundTo(value.m2optimaal, 2)) + "</b> m<sup>2</sup></p><br>";
       }
     });
     dumpText = "<div id=\"sonar-dump-table\"><h2>Samenvatting akoestisch adviesrapport</h2><br>" + 
@@ -538,9 +549,9 @@ $(document).ready(function () {
     "<p>Betreft: <b>" + sVars.ruimteNaam + "</b></p><br>" +
     "<h3>Kenmerken van de ruimte</h3>" +
     "<hr><br>" +
-    "<p>Oppervlakte (m<sup>2</sup>): <b>" + roundTo(sVars.oppervlakte, 2) + "</b></p>" +
-    "<p>Hoogte (m): <b>" + roundTo(sVars.hoogte, 2) + "</b></p>" +
-    "<p>Inhoud (m<sup>3</sup>): <b>" + roundTo(sVars.inhoud, 2) + "</b></p><br>" +
+    "<p>Oppervlakte (m<sup>2</sup>): <b>" + dotToComma(roundTo(sVars.oppervlakte, 2)) + "</b></p>" +
+    "<p>Hoogte (m): <b>" + dotToComma(roundTo(sVars.hoogte, 2)) + "</b></p>" +
+    "<p>Inhoud (m<sup>3</sup>): <b>" + dotToComma(roundTo(sVars.inhoud, 2)) + "</b></p><br>" +
     "<p>Gebruik van de ruimte: <b>" + $("#gebruik option:selected").text() + "</b></p>" +
     "<p>Ambiance: <b>" + $("#ambiance option:selected").text() + "</b></p>" +
     "<p>Aantal aanwezige personen en gedrag: <b>" + sVars.personenAantal + "</b>, <b>" + $("#personenGedrag option:selected").text() + "</b></p>" +
@@ -548,11 +559,11 @@ $(document).ready(function () {
     "<p>Te verwachten plaatsing akoestische materialen: <b>" + $("#plaatsing option:selected").text() + "</b></p><br>" +
     "<h3>Huidige akoestiek van de ruimte</h3><hr><br>" + 
     "<p>Analyse van de huidige akoestiek: op basis van de akoestische meting, uitgevoerd op: <b>" + date.getDate()  + "-" + date.getMonth() + "-" + date.getFullYear() + "</b></p>" +
-    "<p>De huidige gewogen gemiddelde galmtijd in deze ruimte is <b>" + roundTo(sVars.metingAvg, 2) + "</b> sec.</p>" +
+    "<p>De huidige gewogen gemiddelde galmtijd in deze ruimte is <b>" + dotToComma(roundTo(sVars.metingAvg, 2)) + "</b> sec.</p>" +
     "<p>Dit komt overeen met <b>" + roundTo(sVars.kwaliteitsPercentage, 0) + "</b>% van de advieswaarde.</p><br>" +
     "<h3>Advies voor optimale akoestiek in deze ruimte</h3>" +
     "<hr><br>" +
-    "<p>Advieswaarde voor optimale akoestiek in deze ruimte: <b>" + roundTo(sVars.advieswaarde, 2) + "</b> sec.</p>" +
+    "<p>Advieswaarde voor optimale akoestiek in deze ruimte: <b>" + dotToComma(roundTo(sVars.advieswaarde, 2)) + "</b> sec.</p>" +
     "<br><h3>Akoestische producten en geadviseerde hoeveelheid ervan</h3>" +
     "<hr><br>" +
     "<p>(Productnaam: 60% resultaat / 80% resultaat / 100% resultaat)</p><br>" +
@@ -568,6 +579,10 @@ $(document).ready(function () {
 
 function roundTo(value, sig) {
   return Number(value.toFixed(sig));
+}
+
+function dotToComma(value) {
+  return value.toString().replace(/\./g, ",")
 }
 
 function invalidCheck() {
