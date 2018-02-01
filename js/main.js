@@ -571,17 +571,17 @@ $(document).ready(function () {
     $.each(producten, function (key, value) {
       if (value.shown == true) {
         dumpTextProducten += "<p style=\"margin: 0\">" + value.naam + ": <b>" + dotToComma(roundTo(value.m2hoorbaar, 2)) + "</b> m<sup>2</sup> / <b>" + dotToComma(roundTo(value.m2goed, 2)) + "</b> m<sup>2</sup> / <b>" + dotToComma(roundTo(value.m2optimaal, 2)) + "</b> m<sup>2</sup></p>";
-      }
-      if (value.customm2 != 0) {
-        dumpTextProducten += "<p> - Aangepaste waarde: <b>" + value.customm2 + "</b> m<sup>2</sup> geeft <b> " + value.customsec + "</b> sec = <b>" + value.customperc + "</b>%</p><br>";
-      } else {
-        dumpTextProducten += "<br>";
+        if (value.customm2 != 0) {
+          dumpTextProducten += "<p> - Aangepaste waarde: <b>" + value.customm2 + "</b> m<sup>2</sup> geeft <b> " + value.customsec + "</b> sec = <b>" + value.customperc + "</b>%</p><br>";
+        } else {
+          dumpTextProducten += "<br>";
+        }
       }
     });
-    dumpText = "<div id=\"sonar-dump-table\"><h2>Samenvatting akoestisch adviesrapport</h2><br>" + 
+    dumpText = "<div id=\"sonar-dump-table\"><h2>Samenvatting akoestisch adviesrapport</h2>" + 
     "<hr><br>" +
     "<p>Voor: <b>" + sVars.projectNaam + "</b></p>" +
-    "<p>Betreft: <b>" + sVars.ruimteNaam + "</b></p><br>" +
+    "<p>Betreft: <b>" + sVars.ruimteNaam + "</b></p><br><br>" +
     "<h3>Kenmerken van de ruimte</h3>" +
     "<hr><br>" +
     "<p>Oppervlakte (m<sup>2</sup>): <b>" + dotToComma(roundTo(sVars.oppervlakte, 2)) + "</b></p>" +
@@ -591,15 +591,15 @@ $(document).ready(function () {
     "<p>Ambiance: <b>" + $("#ambiance option:selected").text() + "</b></p>" +
     "<p>Aantal aanwezige personen en gedrag: <b>" + sVars.personenAantal + "</b>, <b>" + $("#personenGedrag option:selected").text() + "</b></p>" +
     "<p>Extra wensen akoestiek: <b>" + $("#wensen option:selected").text() + "</b></p>" +
-    "<p>Te verwachten plaatsing akoestische materialen: <b>" + $("#plaatsing option:selected").text() + "</b></p><br>" +
+    "<p>Te verwachten plaatsing akoestische materialen: <b>" + $("#plaatsing option:selected").text() + "</b></p><br><br>" +
     "<h3>Huidige akoestiek van de ruimte</h3><hr><br>" + 
     "<p>Analyse van de huidige akoestiek: op basis van de akoestische meting, uitgevoerd op: <b>" + date.getDate()  + "-" + date.getMonth() + "-" + date.getFullYear() + "</b></p>" +
     "<p>De huidige gewogen gemiddelde galmtijd in deze ruimte is <b>" + dotToComma(roundTo(sVars.metingAvg, 2)) + "</b> sec.</p>" +
-    "<p>Dit komt overeen met <b>" + roundTo(sVars.kwaliteitsPercentage, 0) + "</b>% van de advieswaarde.</p><br>" +
+    "<p>Dit komt overeen met <b>" + roundTo(sVars.kwaliteitsPercentage, 0) + "</b>% van de advieswaarde.</p><br><br>" +
     "<h3>Advies voor optimale akoestiek in deze ruimte</h3>" +
     "<hr><br>" +
     "<p>Advieswaarde voor optimale akoestiek in deze ruimte: <b>" + dotToComma(roundTo(sVars.advieswaarde, 2)) + "</b> sec.</p>" +
-    "<br><h3>Akoestische producten en geadviseerde hoeveelheid ervan</h3>" +
+    "<br><br><h3>Akoestische producten en geadviseerde hoeveelheid ervan</h3>" +
     "<hr><br>" +
     "<p>(Productnaam: 60% resultaat / 80% resultaat / 100% resultaat)</p><br>" +
     "<div id=\"dump-producten\">" + dumpTextProducten + "</div>" +
